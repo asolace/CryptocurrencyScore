@@ -1,0 +1,45 @@
+.coin-header {
+  display: flex;
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.color-lg {
+  color: var(--light-gray);
+}
+
+.coin-flex-item {
+  margin-right: 50px;
+}
+
+.coin-logo {
+  width: 70px;
+  display: inline-block;
+}
+
+.coin-logo img {
+  width: 100%;
+}
+
+.coin-main {
+  float: right;
+  margin-left: 10px;
+}
+
+.coin-price {
+  font-size: 30px;
+}
+
+.coin-sm-label {
+  font-size: 15px;
+}
+
+.coin-main h1 {
+  margin: 0;
+}
+
+.coin-rating {
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+}

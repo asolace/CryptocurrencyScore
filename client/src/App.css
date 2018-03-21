@@ -1,3 +1,147 @@
+@import url('https://fonts.googleapis.com/css?family=Hind|Cantarell|Montserrat|Raleway:100');
+@import 'stylesheets/coin/index.css';
+@import 'stylesheets/donate.css';
+@import 'stylesheets/footer.css';
+@import 'stylesheets/faq.css';
+@import 'stylesheets/grade.css';
+@import 'stylesheets/legend.css';
+@import 'stylesheets/navbar.css';
+@import 'stylesheets/media.css';
+@import 'stylesheets/loading.css';
+
+.bottom {
+  position: fixed;
+  top: 10%;
+  right: 2%;
+  font-size: 40px;
+}
+
 .App {
   text-align: center;
+}
+
+.body {
+  margin-top: 15px;
+}
+
+:root {
+  --link-color: #428bca;
+  --light-gray: #abb1bf;
+}
+
+a {
+  color: gray;
+}
+
+a, a:active, a:hover {
+  text-decoration: none;
+}
+
+.hidden { display: none; }
+.hidden:target { display: block; }
+
+.negative-change { color: #d14836 }
+.positive-change { color: #093 }
+
+.pagination {
+  float: right;
+  color: var(--primary);
+  margin-bottom: 5px;
+}
+
+.back-to-top {
+  position: fixed;
+  right: 2%;
+  bottom: 50px;
+}
+
+.nav-item {
+  margin-left: 0 !important;
+  margin-right: 15px;
+}
+
+.nav {
+  border-bottom: 0px;
+  margin-top: 13px;
+}
+
+.main-nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: white;
+}
+
+.subnav {
+  margin-top: 75px;
+}
+.subnav-content {
+  padding: 0 50px 0 50px;
+  display: flex;
+  justify-content: center;
+}
+.subnav-content a {
+  padding-right: 50px;
+}
+
+
+
+/* ANNOUNCEMENT BEGIN */
+.announcements {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.announcements-container {
+  padding: 0 20px 0 20px;
+}
+.announcement-header {
+  font-weight: 700;
+}
+
+
+/* HOME BEGIN */
+.home {
+  text-align: left;
+  font-size: 13px;
+}
+
+.rating-tab {
+  cursor: default;
+}
+
+.list-table {
+  font-family: Montserrat,sans-serif;
+}
+
+.rating-list-table td {
+  vertical-align: middle;
+}
+
+.coin-list-logo {
+  width: 20px;
+}
+
+.list-pagination {
+  margin-top: 10px;
+}
+
+.list-sort {
+  cursor: pointer;
+}
+.list-sort span {
+  color: #66cda3;
+}
+
+
+
+/* DISCLAIMER BEGIN */
+.disclaimer-container {
+  margin-top: 20px;
+}
+
+.disclaimer-content {
+  margin: 50px 0;
+  text-align: left;
 }

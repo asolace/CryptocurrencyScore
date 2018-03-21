@@ -1,0 +1,16 @@
+.footer-container {
+  text-align: left;
+  font-size: 13px;
+  padding-bottom: 20px;
+  margin-top: 60px;
+}
+
+.right-footer {
+  float: right;
+  padding: 0 15px;
+}
+
+.right-footer a {
+  color: var(--link-color) !important;
+  cursor: pointer;
+}

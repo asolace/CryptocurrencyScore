@@ -1,0 +1,26 @@
+.faq-header-container {
+  background-color: #cef0fa;
+  height: 200px;
+  color: #5b6a72;
+  font-family: 'Hind', sans-serif;
+}
+
+.faq-header {
+  padding: 30px 50px;
+}
+
+.faq h2 {
+  line-height: 50px;
+  letter-spacing: 3px;
+}
+
+.faq-nav {
+  background-color: #e6fce6;
+  padding: 10px 0px;
+}
+
+.faq hr {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  border-top: 1px solid rgba(0, 0, 0, 0.15);
+}

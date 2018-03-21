@@ -1,0 +1,39 @@
+@media (min-width: 768px) {
+  .navbar {
+    border-radius: 0px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .grade-text { font-size: 15px; }
+  .grade-box { padding: 10px 15px; }
+
+  .list-7d, .list-24h { display: none; }
+}
+
+@media (max-width: 770px) {
+  .list-marketcap { display: none; }
+  .grade-box { padding: 5px 10px; }
+
+}
+
+@media (max-width: 550px) {
+  .grade-text { font-size: 10px; }
+  .how-it-works { font-size: 10px; }
+  .how-it-works-header h2 { font-size: 1.5rem; }
+  .how-it-works-header h5 { font-size: 1rem; }
+}
+
+@media (max-width: 500px) {
+  .list-table thead,
+  .list-table tbody { font-size: 10px; }
+
+  .title-full { display: none; }
+  .title-short { display: inline-block; }
+
+  .flex-item {
+    margin-right: -10px;
+    font-size: 7px;
+  }
+
+}

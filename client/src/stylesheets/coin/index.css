@@ -1,0 +1,8 @@
+@import 'header.css';
+@import 'graph.css';
+@import 'body.css';
+
+.coin-container {
+  font-family: Montserrat,sans-serif;
+  margin: 30px 50px;
+}

@@ -1,0 +1,69 @@
+.coin-body {
+  margin-top: 30px;
+  text-align: left;
+}
+
+.card-body {
+  padding: 10px;
+}
+
+.side-content-container {
+  /* width: 250px; */
+}
+.side-content-container p {
+  margin: 0;
+  font-size: 15px;
+}
+.side-content-container h5 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 900;
+  color: #9ab0ce;
+}
+
+
+
+
+
+.details-container {
+  margin-top: 20px;
+}
+
+.details-container .nav-link {
+  cursor: default;
+}
+.tab-content {
+  margin-top: 10px;
+}
+
+
+.details-container th {
+  padding: 5px;
+  font-size: 15px;
+  color: #444;
+  background-color: #8ed3ff;
+}
+.details-container td {
+  padding: 5px;
+  font-size: 13px;
+  color: #777;
+}
+.details-container a {
+  color: #2B5A99;
+}
+.details-container a:hover {
+  color: #66a0ff;
+}
+
+
+
+
+
+.twitter-tab p {
+  margin-bottom: 3px;
+  font-size: 15px;
+}
+.twitter-tab span {
+  color: #a08500;
+  font-size: 15px;
+}
