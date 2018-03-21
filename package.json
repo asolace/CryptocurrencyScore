@@ -1,0 +1,19 @@
+{
+  "name": "cryptocurrencyscore",
+  "version": "1.0.0",
+  "description": "Scoring system for Cryptocurrency",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/asolace/CryptocurrencyScore.git"
+  },
+  "author": "Asolace",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/asolace/CryptocurrencyScore/issues"
+  },
+  "homepage": "https://github.com/asolace/CryptocurrencyScore#readme"
+}
