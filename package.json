@@ -3,8 +3,16 @@
   "version": "1.0.0",
   "description": "Scoring system for Cryptocurrency",
   "main": "index.js",
+  "engines": {
+    "node": "8.9.1",
+    "npm": "5.6.0"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "server": "nodemon",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "repository": {
     "type": "git",
@@ -15,5 +23,19 @@
   "bugs": {
     "url": "https://github.com/asolace/CryptocurrencyScore/issues"
   },
-  "homepage": "https://github.com/asolace/CryptocurrencyScore#readme"
+  "homepage": "https://github.com/asolace/CryptocurrencyScore#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.2",
+    "concurrently": "^3.5.1",
+    "cookie-session": "^2.0.0-beta.3",
+    "express": "^4.16.3",
+    "imageurl-base64": "^1.0.0",
+    "mongoose": "^5.0.11",
+    "passport": "^0.4.0",
+    "passport-google-oauth20": "^1.0.0",
+    "passport-jwt": "^4.0.0",
+    "validator": "^9.4.1"
+  }
 }
