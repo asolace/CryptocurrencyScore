@@ -1,11 +1,11 @@
 const UserRating = require('../models/UserRating')
 
 module.exports = app => {
-  app.get('/api/user_ratings', async (req, res) => {
+  app.get('/api/user/rating-list', async (req, res) => {
 
   })
 
-  app.get('/api/user_rating', async (req, res) => {
+  app.get('/api/user/rating', async (req, res) => {
     let result = await UserRating.findOne(req.query)
     let response = {}
 

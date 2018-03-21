@@ -3,7 +3,7 @@ const axios = require('axios')
 const keys = require('../config/keys')
 
 module.exports = app => {
-  app.get('/coin/list/:page', (req, res) => {
+  app.get('/api/coin/list/:page', (req, res) => {
     if (req.params.page === "all") {
       Coin.find({}, (err, coins) => {
         if (err) console.log(err)
@@ -28,7 +28,7 @@ module.exports = app => {
 
   })
 
-  app.get('/coin/info', (req, res) => {
+  app.get('/api/coin/info', (req, res) => {
     Coin.findOne({ symbol: req.query.symbol }, (err, coin) => {
       if (err) console.log(err)
 
@@ -36,7 +36,7 @@ module.exports = app => {
     })
   })
 
-  app.get('/coin/detail/:id', async (req, res) => {
+  app.get('/api/coin/detail/:id', async (req, res) => {
     let data = {}
     let BaseURL = 'https://www.cryptocompare.com/api/data/'
     let detailURL = 'coinsnapshotfullbyid/?id='
