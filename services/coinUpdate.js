@@ -143,8 +143,8 @@ let getCoinList2 = async () => {
 //     })
 //   })
 // }
-
-getCoinList()
-getCoinList2()
+// 
+// getCoinList()
+// getCoinList2()
 // getCoinMiscData2()
 // getCoinSocialData()
