@@ -13,7 +13,7 @@ class ProfileDropdown extends Component {
           <img className="navbar-user-icon" src={this.props.user.googlePhotos} alt="x" />
         </DropdownToggle>
         <DropdownMenu>
-          <Link to="/u/profile">
+          <Link to="/profile">
             <DropdownItem className="google-login">
               Profile
             </DropdownItem>

@@ -12,6 +12,7 @@ import Footer from './components/Footer'
 import Home from './components/Home'
 import Navigation from './components/Navigation'
 import Subnav from './components/Subnav'
+import User from './components/User'
 
 class App extends Component {
   componentDidMount() {
@@ -28,6 +29,7 @@ class App extends Component {
             <Route exact path="/" component={ Home } />
             <Route exact path="/c/:page" component={ Home } />
             <Route path="/disclaimer" component={ Disclaimer } />
+            <Route path="/profile" component={ User } />
           </div>
           <Route path="/info/:id" component={ Coin } />
           <Route path="/faq" component={ Faq } />
