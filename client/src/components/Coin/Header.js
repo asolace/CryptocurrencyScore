@@ -1,5 +1,5 @@
 import React from 'react'
-import helper from '../../helper'
+import helper from '../../helpers'
 
 const Header = ({ coin }) =>
   <div className="coin-header">

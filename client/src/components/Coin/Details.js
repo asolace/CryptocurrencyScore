@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-import helper from '../../helper'
+import helper from '../../helpers'
 import Loading from '../Loading'
 
 import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col, Table } from 'reactstrap';

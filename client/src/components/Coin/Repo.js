@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import helper from '../../helper'
+import helper from '../../helpers'
 
 import { Collapse, Button, CardBody, Card, Table } from 'reactstrap';
 
