@@ -20,7 +20,7 @@ class RatingDropdown extends React.Component {
     var rating = ''
 
     if (user === devId || user === prodId) {
-      url = "/coin/master-coin-update"
+      url = "/api/coin/master-coin-update"
       rating = this.props.rating
     } else {
       url = "/api/coin-update"

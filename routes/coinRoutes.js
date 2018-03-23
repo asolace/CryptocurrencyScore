@@ -51,7 +51,7 @@ module.exports = app => {
     res.json({ data })
   })
 
-  app.post('/coin/master-coin-update', (req, res) => {
+  app.post('/api/coin/master-coin-update', (req, res) => {
     const { userId, coinId, coinRatingUpdate } = req.body
 
     if ((userId === '5aa825ea429914ba0cf5fe0d') || (userId === '5aa8276f2383e20014458794')) {
@@ -72,7 +72,7 @@ module.exports = app => {
     }
   })
 
-  app.post('/coin/master-reset', (req, res) => {
+  app.post('/api/coin/master-reset', (req, res) => {
     const { userId } = req.body
 
     if ((userId === '5aa825ea429914ba0cf5fe0d') || (userId === '5aa8276f2383e20014458794')) {

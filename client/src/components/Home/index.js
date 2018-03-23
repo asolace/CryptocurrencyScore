@@ -144,7 +144,7 @@ class FullList extends Component {
   }
 
   handleReset = () => {
-    axios.post('/coin/master-reset', {userId: this.props.user._id})
+    axios.post('/api/coin/master-reset', {userId: this.props.user._id})
   }
 
 
