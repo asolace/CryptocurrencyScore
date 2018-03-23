@@ -39,7 +39,7 @@ class Navigation extends Component {
               <Link to="/resources">Resources</Link>
             </NavItem>*/}
 
-            {this.props.auth ?
+            {this.props.user ?
               <ProfileDropdown /> :
               <LoginDropdown />
             }
@@ -52,8 +52,8 @@ class Navigation extends Component {
 
 }
 
-function mapStateToProps({ auth }) {
-  return { auth }
+function mapStateToProps({ user }) {
+  return { user }
 }
 
 export default connect(mapStateToProps)(Navigation)

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom'
+import { connect } from 'react-redux'
+import * as actions from './actions/userActions'
 
 import './App.css';
 
@@ -10,7 +12,12 @@ const Home = () => <div>Home</div>
 
 
 class App extends Component {
+  componentDidMount() {
+    this.props.fetchUser()
+  }
+
   render() {
+    console.log(this.props.user);
     return (
       <BrowserRouter>
         <div className="App">
@@ -26,4 +33,8 @@ class App extends Component {
   }
 }
 
-export default App;
+function mapStateToProps({ auth, user }) {
+  return { auth, user }
+}
+
+export default connect(mapStateToProps, actions)(App);
