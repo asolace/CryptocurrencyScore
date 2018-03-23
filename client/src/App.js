@@ -5,11 +5,9 @@ import * as actions from './actions/userActions'
 
 import './App.css';
 
-import Announcements from './components/Announcements'
 import Navigation from './components/Navigation'
 import Subnav from './components/Subnav'
-const Home = () => <div>Home</div>
-
+import Home from './components/Home'
 
 class App extends Component {
   componentDidMount() {
@@ -23,8 +21,8 @@ class App extends Component {
           <Navigation />
           <Subnav />
           <div className="container body">
-            <Announcements />
             <Route exact path="/" component={ Home } />
+            <Route exact path="/c/:page" component={ Home } />
           </div>
         </div>
       </BrowserRouter>
