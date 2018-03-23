@@ -17,7 +17,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.props.user);
     return (
       <BrowserRouter>
         <div className="App">
@@ -33,8 +32,4 @@ class App extends Component {
   }
 }
 
-function mapStateToProps({ auth, user }) {
-  return { auth, user }
-}
-
-export default connect(mapStateToProps, actions)(App);
+export default connect(null, actions)(App);
