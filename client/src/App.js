@@ -8,6 +8,7 @@ import './App.css';
 import Coin from './components/Coin'
 import Disclaimer from './components/Disclaimer'
 import Faq from './components/Faq'
+import Footer from './components/Footer'
 import Home from './components/Home'
 import Navigation from './components/Navigation'
 import Subnav from './components/Subnav'
@@ -30,6 +31,7 @@ class App extends Component {
           </div>
           <Route path="/info/:id" component={ Coin } />
           <Route path="/faq" component={ Faq } />
+          <Footer />
         </div>
       </BrowserRouter>
     );
