@@ -24,7 +24,7 @@ class Details extends Component {
   async componentDidUpdate(prevProps, prevState) {
     if (prevProps.coin !== this.props.coin) {
       try {
-        let res = await axios.get('/coin/detail/' + this.props.coin.ccId)
+        let res = await axios.get('/api/coin/detail/' + this.props.coin.ccId)
         let { details, social } = res.data.data
 
         this.setState({
