@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import { Row, Col } from 'reactstrap'
 
+import Body from './Body'
 import Loading from '../Loading'
 import Navigation from './Navigation'
 
@@ -18,7 +18,8 @@ class User extends Component {
             <Col xs="3">
               <Navigation />
             </Col>
-            <Col xs="auto">
+            <Col xs="6">
+              <Body />
             </Col>
             <Col xs="3">
             </Col>
