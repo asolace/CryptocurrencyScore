@@ -141,7 +141,7 @@ class Details extends Component {
                     </tbody>
                   </Table>
 
-                  <u>-- FACEBOOK --</u>
+                  <span>Facebook</span>
                   <Table bordered>
                     <thead>
                       <tr>
@@ -161,7 +161,7 @@ class Details extends Component {
                     </tbody>
                   </Table>
 
-                  <u>-- REDDIT --</u>
+                  <span>Redit</span>
                   <Table bordered>
                     <thead>
                       <tr>

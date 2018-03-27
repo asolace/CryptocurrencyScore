@@ -17,7 +17,7 @@ class Navigation extends Component {
   toggle = () => this.setState({  isOpen: !this.state.isOpen })
 
   render() {
-    const HomeURL = process.env.NODE_ENV === "development" ? "/" : "https://ccscore.herokuapp.com"
+    const HomeURL = process.env.NODE_ENV === "development" ? "/" : "https://cryptocurrency-score.herokuapp.com/"
 
     return (
       <Navbar className="main-nav" color="faded" light expand="md" id="nav">

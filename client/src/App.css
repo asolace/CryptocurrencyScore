@@ -49,6 +49,11 @@ a, a:active, a:hover {
   margin-bottom: 5px;
 }
 
+.card {
+  border: none;
+  box-shadow: 0 2px 6px 0 hsla(0, 0%, 0%, 0.2);
+}
+
 .back-to-top {
   position: fixed;
   right: 2%;

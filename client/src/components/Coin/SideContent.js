@@ -5,7 +5,7 @@ import { Card } from 'reactstrap'
 
 const SideContent = ({ coin }) =>
   <div className="side-content-container">
-    <Card body outline color="secondary">
+    <Card body outline>
       <span className={`grade-box ${helper.renderRatingBox(coin.rating)}`}>
         {coin.rating}
       </span>
