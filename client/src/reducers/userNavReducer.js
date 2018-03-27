@@ -5,7 +5,7 @@ export default function(state = null, action) {
     case NAV_PROFILE:
       return 'profile'
     case NAV_COIN:
-      return 'coin-rating'
+      return 'coins-rated'
     default:
       return 'profile'
   }

@@ -16,7 +16,7 @@ class SideContent extends Component {
       <Card body outline>
         <ListGroup className="user-nav">
           <ListGroupItem data-id="profile" className={userNav === 'profile' ? "user-nav-selected" : ''} onClick={this.handleNavClick}><i className="fa fa-user-circle"></i>Profile</ListGroupItem>
-          <ListGroupItem data-id="coin-rating" className={userNav === 'coin-rating' ? "user-nav-selected" : ''} onClick={this.handleNavClick}><i className="fa fa-bitcoin"></i>Coins Rated</ListGroupItem>
+          <ListGroupItem data-id="coins-rated" className={userNav === 'coins-rated' ? "user-nav-selected" : ''} onClick={this.handleNavClick}><i className="fa fa-bitcoin"></i>Coins Rated</ListGroupItem>
         </ListGroup>
       </Card>
     )

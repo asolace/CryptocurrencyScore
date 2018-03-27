@@ -2,7 +2,14 @@ const UserRating = require('../models/UserRating')
 
 module.exports = app => {
   app.get('/api/user/rating-list', async (req, res) => {
+    let result = await UserRating.find()
+      .where(req.query)
+      .populate({
+        path: '_coinId',
+        select: ['name', 'symbol', 'url', 'logo']
+      })
 
+    res.json(result)
   })
 
   app.get('/api/user/rating', async (req, res) => {

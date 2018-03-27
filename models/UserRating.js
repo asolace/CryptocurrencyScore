@@ -2,8 +2,8 @@ const mongoose = require('mongoose')
 const ObjectId = mongoose.Schema.ObjectId
 
 const UserRatingSchema = mongoose.Schema({
-  _userId: { type: ObjectId, require: true },
-  _coinId: { type: ObjectId, require: true },
+  _userId: { type: ObjectId, require: true, ref: 'User' },
+  _coinId: { type: ObjectId, require: true, ref: 'Coin' },
   rating: String,
   comment: String
 })
