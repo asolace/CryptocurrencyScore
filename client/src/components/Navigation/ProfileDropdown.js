@@ -1,11 +1,16 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import * as actions from '../../actions/userActions'
 
 import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
 
 class ProfileDropdown extends Component {
+  handleLogout = () => {
+    this.props.logoutUser(this.props.history)
+    this.props.history.push('/')
+  }
+
   render() {
     return (
       <UncontrolledDropdown nav innavbar="true">
@@ -19,11 +24,9 @@ class ProfileDropdown extends Component {
             </DropdownItem>
           </Link>
           <DropdownItem divider />
-          <a href="/api/logout">
-            <DropdownItem className="google-login">
+            <DropdownItem className="google-login" onClick={this.handleLogout}>
               Logout
             </DropdownItem>
-          </a>
         </DropdownMenu>
       </UncontrolledDropdown>
     )
@@ -34,4 +37,4 @@ function mapStateToProps({ user }) {
   return { user }
 }
 
-export default connect(mapStateToProps, actions)(ProfileDropdown)
+export default withRouter(connect(mapStateToProps, actions)(ProfileDropdown))
