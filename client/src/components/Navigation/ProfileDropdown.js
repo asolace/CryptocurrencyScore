@@ -7,8 +7,7 @@ import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from
 
 class ProfileDropdown extends Component {
   handleLogout = () => {
-    this.props.logoutUser()
-    this.props.history.push('/')
+    this.props.logoutUser(this.props.history)
   }
 
   render() {

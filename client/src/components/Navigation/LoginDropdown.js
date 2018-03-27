@@ -8,7 +8,7 @@ const LoginDropdown = () =>
     </DropdownToggle>
     <DropdownMenu >
       <a href="/auth/google">
-        <DropdownItem>
+        <DropdownItem className="google-login">
           Google
         </DropdownItem>
       </a>

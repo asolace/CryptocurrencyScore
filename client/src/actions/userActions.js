@@ -7,8 +7,9 @@ export const fetchUser = () => async dispatch => {
   dispatch({ type: FETCH_USER, payload: res.data })
 }
 
-export const logoutUser = () => dispatch => {
+export const logoutUser = history => dispatch => {
   localStorage.clear()
   axios.get('/api/logout')
   dispatch({ type: FETCH_USER, payload: false })
+  history.push('/')
 }
