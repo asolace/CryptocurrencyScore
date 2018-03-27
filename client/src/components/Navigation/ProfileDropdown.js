@@ -7,7 +7,7 @@ import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from
 
 class ProfileDropdown extends Component {
   handleLogout = () => {
-    this.props.logoutUser(this.props.history)
+    this.props.logoutUser()
     this.props.history.push('/')
   }
 
@@ -19,12 +19,12 @@ class ProfileDropdown extends Component {
         </DropdownToggle>
         <DropdownMenu>
           <Link to="/profile">
-            <DropdownItem className="google-login">
+            <DropdownItem>
               Profile
             </DropdownItem>
           </Link>
           <DropdownItem divider />
-            <DropdownItem className="google-login" onClick={this.handleLogout}>
+            <DropdownItem onClick={this.handleLogout}>
               Logout
             </DropdownItem>
         </DropdownMenu>

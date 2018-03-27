@@ -45,12 +45,9 @@
 
 
 
+.dropdown-item {
+  cursor: pointer;
+}
 .coinbase-login {
   cursor: not-allowed;
 }
-.google-login {
-  cursor: pointer;
-}
-/* .google-login:hover {
-  color: #007bff;
-} */
