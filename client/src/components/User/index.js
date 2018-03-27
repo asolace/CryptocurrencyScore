@@ -12,10 +12,8 @@ class User extends Component {
 
   render() {
     if (this.props.user) {
-      const { username } = this.props.user
       return (
         <div>
-          <h1>{ username }</h1>
           <Row>
             <Col xs="3">
               <Navigation />
