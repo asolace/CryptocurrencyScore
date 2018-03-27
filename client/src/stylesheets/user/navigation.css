@@ -8,8 +8,11 @@
 }
 
 .user-nav .list-group-item {
-  border: none;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-top: none;
   cursor: default;
+  box-shadow: 0 2px 6px 0 hsla(0, 0%, 0%, 0.2);
 }
 
 .user-nav .list-group-item:hover {
@@ -21,9 +24,15 @@
 }
 
 .user-nav-selected {
-  color: white;
+  border-left: 5px solid #7041A9;
+}
+
+.profile-nav-icon {
+  height: 100px;
+  line-height: 100px;
   background-color: #7041A9;
 }
-.user-nav-selected i {
-  color: white;
+.profile-nav-icon img {
+  border-radius: 10px;
+  vertical-align: middle;
 }

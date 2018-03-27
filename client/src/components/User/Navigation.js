@@ -10,21 +10,24 @@ class SideContent extends Component {
   }
 
   render() {
-    const { userNav } = this.props
+    const { userNav, user } = this.props
 
     return (
-      <Card body outline>
+      <div>
+        <div className="profile-nav-icon">
+          <img src={user.googlePhotos} alt="profile-img"/>
+        </div>
         <ListGroup className="user-nav">
           <ListGroupItem data-id="profile" className={userNav === 'profile' ? "user-nav-selected" : ''} onClick={this.handleNavClick}><i className="fa fa-user-circle"></i>Profile</ListGroupItem>
           <ListGroupItem data-id="coins-rated" className={userNav === 'coins-rated' ? "user-nav-selected" : ''} onClick={this.handleNavClick}><i className="fa fa-bitcoin"></i>Coins Rated</ListGroupItem>
         </ListGroup>
-      </Card>
+      </div>
     )
   }
 }
 
-function mapStateToProps({ userNav }) {
-  return { userNav }
+function mapStateToProps({ userNav, user }) {
+  return { userNav, user }
 }
 
 export default connect(mapStateToProps, actions)(SideContent)
