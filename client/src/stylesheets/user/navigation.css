@@ -1,0 +1,29 @@
+.user-nav {
+  text-align: left;
+}
+
+.user-nav i {
+  padding-right: 15px;
+  color: gray;
+}
+
+.user-nav .list-group-item {
+  border: none;
+  cursor: default;
+}
+
+.user-nav .list-group-item:hover {
+  color: white;
+  background-color: #C69CF9;
+}
+.user-nav .list-group-item:hover i {
+  color: white;
+}
+
+.user-nav-selected {
+  color: white;
+  background-color: #6F30BB;
+}
+.user-nav-selected i {
+  color: white;
+}

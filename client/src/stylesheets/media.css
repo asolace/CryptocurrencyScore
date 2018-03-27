@@ -14,11 +14,11 @@
 @media (max-width: 770px) {
   .list-marketcap { display: none; }
   .grade-box { padding: 5px 10px; }
-
+  .grade-text { font-size: 10px; }
 }
 
 @media (max-width: 550px) {
-  .grade-text { font-size: 10px; }
+  .grade-text { font-size: 7px; }
   .how-it-works { font-size: 10px; }
   .how-it-works-header h2 { font-size: 1.5rem; }
   .how-it-works-header h5 { font-size: 1rem; }
