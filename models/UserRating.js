@@ -10,18 +10,18 @@ const UserRatingSchema = mongoose.Schema({
 
 const UserRating = module.exports = mongoose.model('UserRating', UserRatingSchema)
 
-module.exports.addOrUpdateUserRating = (coinId, userId, coinRatingUpdate) => {
+module.exports.addOrUpdateUserRating = (coinId, userId, coinRatingUpdate, cb) => {
   const query = { _userId: userId, _coinId: coinId }
   const ratingData = { _userId: userId, _coinId: coinId, rating: coinRatingUpdate }
 
   UserRating.findOne(query).then(data => {
     if (data === null) {
       let newUserRating = new UserRating(ratingData)
-      newUserRating.save(() => console.log(`${coinId} Saved!`))
+      newUserRating.save(cb({status: 'success', message: 'Coin successfully added'}))
     } else {
       UserRating.findOneAndUpdate(query, ratingData, (err, coin) => {
-        if (err) console.log(`Update Error: ${err}`)
-        else console.log(`${coinId} Updated!`)
+        if (err) cb({status: 'failed', message: `Update Error: ${err}`})
+        else cb({status: 'success', message: 'Coin successfully updated'})
       })
     }
 

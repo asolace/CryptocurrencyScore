@@ -16,9 +16,9 @@ class User extends Component {
         <div>
           <Row>
             <Col className="user-nav-container" xs="4">
-              <Navigation />
+              <Navigation user={this.props.user}/>
             </Col>
-            <Col xs="auto">
+            <Col xs="8">
               <Body />
             </Col>
           </Row>

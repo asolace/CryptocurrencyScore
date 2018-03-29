@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { ListGroup, ListGroupItem } from 'reactstrap';
+import { ListGroup, ListGroupItem, Form, FormGroup, Label, Input } from 'reactstrap';
 
 class Profile extends Component {
   state = {}
@@ -11,11 +11,28 @@ class Profile extends Component {
   render() {
     const { user } = this.props
     return (
-      <div className="user-profile-container" style={{width: "100%"}}>
+      <div className="user-profile-container">
+        <Form>
+          <FormGroup>
+            <Label for="username">Username</Label>
+            <Input name="username" id="username" placeholder={user.username} />
+          </FormGroup>
+        </Form>
 
-        stuff
+        <div>
+          <Label>Email:</Label>
+          <span className="users-data">{user.email}</span>
+        </div>
 
+        <div>
+          <Label>Coins Rated:</Label>
+          <span className="users-data">10</span>
+        </div>
 
+        <div>
+          <Label>Influence Rating:</Label>
+          <span className="users-data">5</span>
+        </div>
       </div>
     )
   }

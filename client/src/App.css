@@ -40,6 +40,10 @@ a, a:active, a:hover {
   text-decoration: none;
 }
 
+label {
+  font-size: 18px;
+}
+
 .hidden { display: none; }
 .hidden:target { display: block; }
 

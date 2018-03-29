@@ -7,3 +7,13 @@
   border-radius: 10px;
   box-shadow: 0 2px 6px 0 hsla(0, 0%, 0%, 0.2);
 }
+
+.users-data {
+  font-size: 15px;
+  margin-left: 10px;
+  color: gray;
+  border: 1px solid #ced4da;
+  border-radius: 1rem;
+  padding: 0.375rem 0.75rem;
+  cursor: default;
+}
