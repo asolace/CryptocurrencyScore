@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const ObjectId = mongoose.Schema.ObjectId
+const User = require('./User')
 
 const UserRatingSchema = mongoose.Schema({
   _userId: { type: ObjectId, require: true, ref: 'User' },
@@ -15,15 +16,24 @@ module.exports.addOrUpdateUserRating = (coinId, userId, coinRatingUpdate, cb) =>
   const ratingData = { _userId: userId, _coinId: coinId, rating: coinRatingUpdate }
 
   UserRating.findOne(query).then(data => {
-    if (data === null) {
+    if (data === null && coinRatingUpdate !== 'N') {
       let newUserRating = new UserRating(ratingData)
+
+      User.updateRatingCount({ _userId: query.userId }, 1)
+
       newUserRating.save(cb({status: 'success', message: 'Coin successfully added'}))
-    } else {
+    } else if (data !== null) {
       UserRating.findOneAndUpdate(query, ratingData, (err, coin) => {
-        if (err) cb({status: 'failed', message: `Update Error: ${err}`})
-        else cb({status: 'success', message: 'Coin successfully updated'})
+        if (err) {
+          cb({status: 'failed', message: `Update Error: ${err}`})
+        }
+        else {
+          if (coin.rating !== 'N' && coinRatingUpdate === 'N') User.updateRatingCount({ _userId: query.userId }, -1)
+          if (coin.rating === 'N' && coinRatingUpdate !== 'N') User.updateRatingCount({ _userId: query.userId }, 1)
+          cb({status: 'success', message: 'Coin successfully updated'})
+        }
       })
     }
-
   })
+
 }

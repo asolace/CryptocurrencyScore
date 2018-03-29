@@ -26,12 +26,12 @@ class Profile extends Component {
 
         <div>
           <Label>Coins Rated:</Label>
-          <span className="users-data">10</span>
+          <span className="users-data">{user.ratingsCount || 0}</span>
         </div>
 
         <div>
           <Label>Influence Rating:</Label>
-          <span className="users-data">5</span>
+          <span className="users-data">{user.influenceRating || 0}</span>
         </div>
       </div>
     )

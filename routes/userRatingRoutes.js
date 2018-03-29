@@ -4,6 +4,7 @@ module.exports = app => {
   app.get('/api/user/rating-list', async (req, res) => {
     let result = await UserRating.find()
       .where(req.query)
+      .where({rating: { $ne: 'N' }})
       .populate({
         path: '_coinId',
         select: ['name', 'symbol', 'url', 'logo']
@@ -36,6 +37,9 @@ module.exports = app => {
   })
 
   app.get('/api/user/ratings-count', async (req, res) => {
-    
+    let result = await UserRating.find()
+      .where(req.query).count()
+
+    res.json({ count: result })
   })
 }
