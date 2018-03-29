@@ -15,10 +15,10 @@ class User extends Component {
       return (
         <div>
           <Row>
-            <Col xs="3">
+            <Col className="user-nav-container" xs="4">
               <Navigation />
             </Col>
-            <Col xs="9">
+            <Col xs="auto">
               <Body />
             </Col>
           </Row>

@@ -17,6 +17,8 @@
   .grade-text { font-size: 10px; }
   .subnav-content { font-size: 15px; }
   .subnav-content a { padding-right: 30px; }
+  .footer-container .row { display: block; }
+  .right-footer { padding-left: 13px; float: left; }
 }
 
 @media (max-width: 550px) {

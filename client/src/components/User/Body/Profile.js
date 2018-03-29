@@ -11,8 +11,9 @@ class Profile extends Component {
   render() {
     const { user } = this.props
     return (
-      <div className="user-profile-container">
-        
+      <div className="user-profile-container" style={{width: "100%"}}>
+
+        stuff
 
 
       </div>

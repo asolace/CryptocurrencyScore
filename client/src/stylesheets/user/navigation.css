@@ -1,3 +1,7 @@
+.user-nav-container {
+  min-width: 200px;
+}
+
 .user-nav {
   text-align: left;
 }

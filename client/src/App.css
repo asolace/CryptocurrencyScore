@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Hind|Cantarell|Montserrat|Raleway:100');
 @import 'stylesheets/coin/index.css';
 @import 'stylesheets/user/index.css';
+@import 'stylesheets/announcements.css';
+@import 'stylesheets/home.css';
 @import 'stylesheets/donate.css';
 @import 'stylesheets/footer.css';
 @import 'stylesheets/faq.css';
@@ -54,61 +56,6 @@ a, a:active, a:hover {
   border: none;
   box-shadow: 0 2px 6px 0 hsla(0, 0%, 0%, 0.2);
 }
-
-.back-to-top {
-  position: fixed;
-  right: 2%;
-  bottom: 50px;
-}
-
-/* ANNOUNCEMENT BEGIN */
-.announcements {
-  margin-top: 20px;
-  text-align: left;
-}
-
-.announcements-container {
-  padding: 0 20px 0 20px;
-}
-.announcement-header {
-  font-weight: 700;
-}
-
-
-/* HOME BEGIN */
-.home {
-  text-align: left;
-  font-size: 13px;
-}
-
-.rating-tab {
-  cursor: default;
-}
-
-.list-table {
-  font-family: Montserrat,sans-serif;
-}
-
-.rating-list-table td {
-  vertical-align: middle;
-}
-
-.coin-list-logo {
-  width: 20px;
-}
-
-.list-pagination {
-  margin-top: 10px;
-}
-
-.list-sort {
-  cursor: pointer;
-}
-.list-sort span {
-  color: #66cda3;
-}
-
-
 
 /* DISCLAIMER BEGIN */
 .disclaimer-container {

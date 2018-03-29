@@ -1,0 +1,11 @@
+.announcements {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.announcements-container {
+  padding: 0 20px 0 20px;
+}
+.announcement-header {
+  font-weight: 700;
+}
