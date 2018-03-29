@@ -18,10 +18,8 @@ class User extends Component {
             <Col xs="3">
               <Navigation />
             </Col>
-            <Col xs="6">
+            <Col xs="9">
               <Body />
-            </Col>
-            <Col xs="3">
             </Col>
           </Row>
         </div>

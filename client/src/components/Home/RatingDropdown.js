@@ -24,7 +24,7 @@ class RatingDropdown extends React.Component {
       rating = this.props.rating
     } else {
       url = "/api/coin-update"
-      let result = await axios.get('/api/user_rating', {
+      let result = await axios.get('/api/user/rating', {
         params: {
           _userId: user,
           _coinId: this.props.coinId
