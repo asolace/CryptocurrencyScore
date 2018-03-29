@@ -34,4 +34,8 @@ module.exports = app => {
       res.json(message)
     })
   })
+
+  app.get('/api/user/ratings-count', async (req, res) => {
+    
+  })
 }
