@@ -61,38 +61,6 @@ a, a:active, a:hover {
   bottom: 50px;
 }
 
-.nav-item {
-  margin-left: 0 !important;
-  margin-right: 15px;
-}
-
-.nav {
-  border-bottom: 0px;
-  margin-top: 13px;
-}
-
-.main-nav {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 1000;
-  background-color: white;
-}
-
-.subnav {
-  margin-top: 75px;
-}
-.subnav-content {
-  padding: 0 50px 0 50px;
-  display: flex;
-  justify-content: center;
-}
-.subnav-content a {
-  padding-right: 50px;
-}
-
-
-
 /* ANNOUNCEMENT BEGIN */
 .announcements {
   margin-top: 20px;

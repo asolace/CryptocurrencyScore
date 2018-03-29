@@ -15,6 +15,8 @@
   .list-marketcap { display: none; }
   .grade-box { padding: 5px 10px; }
   .grade-text { font-size: 10px; }
+  .subnav-content { font-size: 15px; }
+  .subnav-content a { padding-right: 30px; }
 }
 
 @media (max-width: 550px) {
@@ -22,6 +24,7 @@
   .how-it-works { font-size: 10px; }
   .how-it-works-header h2 { font-size: 1.5rem; }
   .how-it-works-header h5 { font-size: 1rem; }
+  .subnav-content { font-size: 10px; }
 }
 
 @media (max-width: 500px) {
@@ -36,4 +39,9 @@
     font-size: 7px;
   }
 
+  .subnav-content a { padding-right: 15px; }
+}
+
+@media (max-width: 400px) {
+  .navbar { padding: 10px; }
 }

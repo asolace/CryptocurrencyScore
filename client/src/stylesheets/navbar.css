@@ -17,13 +17,39 @@
   display: none;
 }
 
+.nav-item {
+  margin-left: 0;
+  margin-right: 15px;
+}
+
+.nav {
+  border-bottom: 0px;
+  margin-top: 13px;
+}
+
+.main-nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: white;
+}
+
+.subnav {
+  margin-top: 75px;
+}
+.subnav-content {
+  padding: 0 50px 0 50px;
+  display: flex;
+  justify-content: center;
+}
+.subnav-content a {
+  padding-right: 50px;
+}
+
 .navbar {
   padding: 10px 100px 10px 100px;
   border-bottom: 1px solid #e7e7e7;
-}
-
-.nav-item {
-  margin-left: 15px;
 }
 
 .nav-login {
@@ -42,8 +68,6 @@
   border-radius: 50px;
   width: 30px;
 }
-
-
 
 .dropdown-item {
   cursor: pointer;
