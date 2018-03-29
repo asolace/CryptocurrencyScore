@@ -20,7 +20,6 @@
 }
 
 @media (max-width: 550px) {
-  .grade-text { font-size: 7px; }
   .how-it-works { font-size: 10px; }
   .how-it-works-header h2 { font-size: 1.5rem; }
   .how-it-works-header h5 { font-size: 1rem; }
@@ -35,7 +34,7 @@
   .title-short { display: inline-block; }
 
   .flex-item {
-    margin-right: -10px;
+    margin-right: 10px;
     font-size: 7px;
   }
 
@@ -44,4 +43,5 @@
 
 @media (max-width: 400px) {
   .navbar { padding: 10px; }
+  .page-item { font-size: 8px; }
 }
