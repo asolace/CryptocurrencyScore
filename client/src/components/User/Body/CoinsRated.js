@@ -14,7 +14,7 @@ class CoinsRated extends Component {
 
   renderCoins = () => {
     return this.state.coins.map((coin, i) => {
-      const { name, symbol, logo } = coin._coinId
+      const { name } = coin._coinId
 
       return (
         <div key={i}>{name}</div>

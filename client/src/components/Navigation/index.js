@@ -32,13 +32,13 @@ class Navigation extends Component {
 
         <Collapse isOpen={this.state.isOpen} navbar>
           <Nav className="ml-auto" navbar>
-            {/*<NavItem>
+            <NavItem>
               <Link to="/faq">FAQ</Link>
             </NavItem>
 
             <NavItem>
               <Link to="/resources">Resources</Link>
-            </NavItem>*/}
+            </NavItem>
 
             {this.props.user ?
               <ProfileDropdown /> :

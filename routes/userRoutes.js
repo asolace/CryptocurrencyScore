@@ -36,14 +36,23 @@ module.exports = app => {
   })
 
   // Update username
-  app.post('/api/user_profile_update', (req, res) => {
-    let updates = {
-      username: req.body.username
-    }
+  app.post('/api/username_update', (req, res) => {
+    const UsernameUpdate = { username: req.body.username }
 
-    User.findOneAndUpdate({ _id: req.user._id}, updates, (err, user) => {
-      if (err) console.log(`Error in updating username: ${err}`);
-      else res.json({ success: true, message: `Username successfully updated to: ${req.body.username}` })
+    User.find(UsernameUpdate, (err, user) => {
+      if (err) {
+        console.log(err)
+      } else {
+        if (user.length === 0) {
+          User.findOneAndUpdate({ _id: req.user._id }, UsernameUpdate, (err, user) => {
+            if (err) console.log(`Error in updating username: ${err}`);
+            else res.json({ success: true, message: `Username successfully updated.` })
+          })
+        } else {
+          res.json({ success: false, message: `Username is already taken`})
+        }
+      }
     })
+
   })
 }

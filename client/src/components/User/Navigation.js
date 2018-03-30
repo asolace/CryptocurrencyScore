@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import * as actions from '../../actions/userNavActions'
 
-import { Card, ListGroup, ListGroupItem } from 'reactstrap'
+import { ListGroup, ListGroupItem } from 'reactstrap'
 
 class SideContent extends Component {
   handleNavClick = event => {

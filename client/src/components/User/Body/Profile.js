@@ -1,34 +1,38 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 
-import { Button, ListGroup, ListGroupItem, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Button, Form, FormGroup, FormFeedback, Label, Input } from 'reactstrap';
 
 class Profile extends Component {
   state = {
-    username: ''
+    username: '',
+    updateReponse: {
+      success: null
+    }
   }
 
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value })
   }
 
-  handleSubmit = async event => {
+  handleUsernameSubmit = async event => {
     event.preventDefault()
-    let result = await axios.post('/api/user_profile_update', this.state)
-    console.log(result);
+    let result = await axios.post('/api/username_update', this.state)
+    this.setState({ updateReponse: result.data })
   }
 
   render() {
     const { user } = this.props
     return (
       <div className="user-profile-container">
-        <Form>
+        <Form onSubmit={this.handleUsernameSubmit}>
           <FormGroup>
             <Label for="username">Username</Label>
-            <Input name="username" id="username" placeholder={user.username} value={this.state.username} onChange={this.handleChange}/>
+            <Input valid={this.state.updateReponse.success} invalid={this.state.updateReponse.success === false} name="username" id="username" placeholder={user.username} value={this.state.username} onChange={this.handleChange}/>
+            {this.state.updateReponse.message && <FormFeedback valid={this.state.updateReponse.success}>{this.state.updateReponse.message}</FormFeedback>}
           </FormGroup>
 
-          <Button className="right" color="success" size="sm" onClick={this.handleSubmit}>Update</Button>
+          <Button className="right" color="success" size="sm" onClick={this.handleUsernameSubmit}>Update</Button>
         </Form>
 
         <div>
