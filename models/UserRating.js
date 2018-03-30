@@ -28,7 +28,7 @@ module.exports.addOrUpdateUserRating = (coinId, userId, coinRatingUpdate, cb) =>
           cb({status: 'failed', message: `Update Error: ${err}`})
         }
         else {
-          if (coin.rating !== 'N' && coinRatingUpdate === 'N') User.updateRatingCount({ _userId: query.userId }, -1)
+          if ((coin.rating !== 'N' && coin.rating !== null) && coinRatingUpdate === 'N') User.updateRatingCount({ _userId: query.userId }, -1)
           if (coin.rating === 'N' && coinRatingUpdate !== 'N') User.updateRatingCount({ _userId: query.userId }, 1)
           cb({status: 'success', message: 'Coin successfully updated'})
         }

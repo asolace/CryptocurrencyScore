@@ -12,9 +12,7 @@ const UserSchema = mongoose.Schema({
 const User = module.exports = mongoose.model('User', UserSchema)
 
 module.exports.updateRatingCount = (query, counter) => {
-  try {
-    User.findOneAndUpdate(query, {$inc: {ratingsCount: counter}})
-  } catch (e) {
-    console.log(e)
-  }
+  User.findOneAndUpdate(query, {$inc: {ratingsCount: counter}}).then(user => {
+    console.log(user);
+  })
 }
