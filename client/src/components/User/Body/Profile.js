@@ -1,11 +1,21 @@
 import React, { Component } from 'react'
-import { ListGroup, ListGroupItem, Form, FormGroup, Label, Input } from 'reactstrap';
+import axios from 'axios'
+
+import { Button, ListGroup, ListGroupItem, Form, FormGroup, Label, Input } from 'reactstrap';
 
 class Profile extends Component {
-  state = {}
+  state = {
+    username: ''
+  }
 
-  handelEdit = () => {
-    console.log('edit');
+  handleChange = event => {
+    this.setState({ [event.target.name]: event.target.value })
+  }
+
+  handleSubmit = async event => {
+    event.preventDefault()
+    let result = await axios.post('/api/user_profile_update', this.state)
+    console.log(result);
   }
 
   render() {
@@ -15,8 +25,10 @@ class Profile extends Component {
         <Form>
           <FormGroup>
             <Label for="username">Username</Label>
-            <Input name="username" id="username" placeholder={user.username} />
+            <Input name="username" id="username" placeholder={user.username} value={this.state.username} onChange={this.handleChange}/>
           </FormGroup>
+
+          <Button className="right" color="success" size="sm" onClick={this.handleSubmit}>Update</Button>
         </Form>
 
         <div>

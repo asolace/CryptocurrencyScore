@@ -18,18 +18,32 @@ module.exports = app => {
     res.redirect('/')
   })
 
-  // User
+  //---- USERS SECTION ---//
   app.get('/api/logout', (req, res) => {
     req.logout()
     res.redirect('/')
   })
 
+  // Auth purpose
   app.get('/api/current_user', (req, res) => {
     res.send(req.user)
   })
 
+  // Entire User's data
   app.get('/api/user_data', async (req, res) => {
     let user = await User.findOne({ _id: req.user._id})
     res.json(user)
+  })
+
+  // Update username
+  app.post('/api/user_profile_update', (req, res) => {
+    let updates = {
+      username: req.body.username
+    }
+
+    User.findOneAndUpdate({ _id: req.user._id}, updates, (err, user) => {
+      if (err) console.log(`Error in updating username: ${err}`);
+      else res.json({ success: true, message: `Username successfully updated to: ${req.body.username}` })
+    })
   })
 }
