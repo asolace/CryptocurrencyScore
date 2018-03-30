@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import axios from 'axios'
 
 import { Row, Col } from 'reactstrap'
 
@@ -10,16 +10,21 @@ import Navigation from './Navigation'
 class User extends Component {
   state = {}
 
+  async componentDidMount() {
+    const result = await axios.get('/api/user_data')
+    this.setState({ user: result.data })
+  }
+
   render() {
-    if (this.props.user) {
+    if (this.state.user) {
       return (
         <div>
           <Row>
             <Col className="user-nav-container" xs="4">
-              <Navigation user={this.props.user}/>
+              <Navigation user={this.state.user}/>
             </Col>
             <Col xs="8">
-              <Body />
+              <Body user={this.state.user}/>
             </Col>
           </Row>
         </div>
@@ -30,8 +35,4 @@ class User extends Component {
   }
 }
 
-function mapStateToProps({ user }) {
-  return { user }
-}
-
-export default connect(mapStateToProps)(User)
+export default User

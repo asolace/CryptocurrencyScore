@@ -17,8 +17,8 @@ class Body extends Component {
   }
 }
 
-function mapStateToProps({ userNav, user }) {
-  return { userNav, user }
+function mapStateToProps({ userNav }) {
+  return { userNav }
 }
 
 export default connect(mapStateToProps)(Body)

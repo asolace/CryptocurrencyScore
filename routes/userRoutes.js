@@ -1,4 +1,5 @@
 const passport = require('passport')
+const User = require('../models/User')
 
 module.exports = app => {
   // Google Oauth
@@ -25,5 +26,10 @@ module.exports = app => {
 
   app.get('/api/current_user', (req, res) => {
     res.send(req.user)
+  })
+
+  app.get('/api/user_data', async (req, res) => {
+    let user = await User.findOne({ _id: req.user._id})
+    res.json(user)
   })
 }
