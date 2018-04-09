@@ -14,7 +14,10 @@ class ProfileDropdown extends Component {
     return (
       <UncontrolledDropdown nav innavbar="true">
         <DropdownToggle nav caret className="nav-profile">
-          <img className="navbar-user-icon" src={this.props.user.googlePhotos} alt="x" />
+          {this.props.user ?
+            <img className="navbar-user-icon" src={this.props.user.googlePhotos} alt="x" /> :
+            <i className="fas fa-poo"></i>
+          }
         </DropdownToggle>
         <DropdownMenu>
           <Link to="/profile">
