@@ -23,7 +23,7 @@ class User extends Component {
             <Col className="user-nav-container" xs="4">
               <Navigation user={this.state.user}/>
             </Col>
-            <Col xs="8">
+            <Col className="user-table-container" xs="8">
               <Body user={this.state.user}/>
             </Col>
           </Row>

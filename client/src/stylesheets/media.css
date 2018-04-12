@@ -19,6 +19,12 @@
   .subnav-content a { padding-right: 30px; }
   .footer-container .row { display: block; }
   .right-footer { padding-left: 13px; float: left; }
+  .user-nav-container {
+    flex: none;
+    max-width: none;
+    margin-bottom: 20px;
+  }
+  .user-table-container { flex: none; max-width: none; }
 }
 
 @media (max-width: 550px) {

@@ -17,3 +17,8 @@
   padding: 0.375rem 0.75rem;
   cursor: default;
 }
+
+.user-table {
+  text-align: left;
+  font-size: 13px;
+}

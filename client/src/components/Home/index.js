@@ -8,8 +8,8 @@ import helpers from '../../helpers'
 import Announcements from '../Announcements'
 import Legend from '../Legend'
 import Loading from '../Loading'
-import RatingDropdown from './RatingDropdown'
-import SortSymbol from './SortSymbol'
+import RatingDropdown from '../Templates/RatingDropdown'
+import SortSymbol from '../Templates/SortSymbol'
 import Paginate from './Paginate'
 
 import { Sparklines, SparklinesLine } from 'react-sparklines';
