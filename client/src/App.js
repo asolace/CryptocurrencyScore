@@ -18,6 +18,7 @@ import PrivateRoute from './components/PrivateRoute'
 
 class App extends Component {
   componentDidMount() {
+    this.props.authenticate()
     this.props.fetchUser()
   }
 
@@ -31,7 +32,7 @@ class App extends Component {
             <Route exact path="/" component={ Home } />
             <Route exact path="/c/:page" component={ Home } />
             <Route path="/disclaimer" component={ Disclaimer } />
-            <PrivateRoute path="/profile" component={ User } />
+            <Route path="/profile" component={ User } />
           </div>
           <Route path="/info/:id" component={ Coin } />
           <Route path="/faq" component={ Faq } />

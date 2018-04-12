@@ -85,7 +85,7 @@ class FullList extends Component {
   }
 
   renderRating = (rating, id, symbol) => {
-    let user = this.props.user._id || ''
+    let user = this.props.user ? this.props.user._id : ''
     let devId = '5aa825ea429914ba0cf5fe0d'
     let prodId = '5aa8276f2383e20014458794'
 

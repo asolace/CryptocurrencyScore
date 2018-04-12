@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import * as actions from '../../../actions/userActions'
 import axios from 'axios'
 
 import { Button, Form, FormGroup, FormFeedback, Label, Input } from 'reactstrap';
@@ -12,7 +14,9 @@ class Profile extends Component {
   }
 
   handleChange = event => {
-    this.setState({ [event.target.name]: event.target.value })
+    this.setState({ [event.target.name]: event.target.value }, () => {
+      this.props.updateUsername(this.state.username)
+    })
   }
 
   handleUsernameSubmit = async event => {
@@ -23,6 +27,7 @@ class Profile extends Component {
 
   render() {
     const { user } = this.props
+
     return (
       <div className="user-profile-container">
         <Form onSubmit={this.handleUsernameSubmit}>
@@ -55,4 +60,4 @@ class Profile extends Component {
 }
 
 
-export default Profile
+export default connect(null, actions)(Profile)

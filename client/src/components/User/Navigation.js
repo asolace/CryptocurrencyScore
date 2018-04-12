@@ -10,12 +10,12 @@ class SideContent extends Component {
   }
 
   render() {
-    const { userNav, user } = this.props
+    const { userNav, user, username } = this.props
 
     return (
       <div>
         <div className="profile-nav-icon">
-          <h4 className="profile-username">{user.username}</h4>
+          <h4 className="profile-username">{username}</h4>
           <img src={user.googlePhotos} alt="profile-img"/>
         </div>
         <ListGroup className="user-nav">
@@ -27,8 +27,8 @@ class SideContent extends Component {
   }
 }
 
-function mapStateToProps({ userNav }) {
-  return { userNav }
+function mapStateToProps({ userNav, username }) {
+  return { userNav, username }
 }
 
 export default connect(mapStateToProps, actions)(SideContent)

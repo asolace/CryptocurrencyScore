@@ -1,1 +1,1 @@
-export const FETCH_COINS = 'fetch_coins'
+export const FETCH_COINS = 'FETCH_COINS'

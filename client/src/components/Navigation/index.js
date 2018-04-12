@@ -40,7 +40,7 @@ class Navigation extends Component {
               <Link to="/resources">Resources</Link>
             </NavItem>
 
-            {this.props.user ?
+            {localStorage.getItem("loggedIn") ?
               <ProfileDropdown /> :
               <LoginDropdown />
             }

@@ -21,17 +21,24 @@ module.exports = app => {
   //---- USERS SECTION ---//
   app.get('/api/logout', (req, res) => {
     req.logout()
+    req.session = null
     res.redirect('/')
   })
 
   // Auth purpose
-  app.get('/api/current_user', (req, res) => {
+  app.get('/api/auth', (req, res) => {
     res.send(req.user)
   })
 
   // Entire User's data
   app.get('/api/user_data', async (req, res) => {
-    let user = await User.findOne({ _id: req.user._id})
+    let user
+
+    if (req.user) {
+      user = await User.findOne({ _id: req.user._id})
+    } else {
+      user = null
+    }
     res.json(user)
   })
 
