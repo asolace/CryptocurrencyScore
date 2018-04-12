@@ -57,6 +57,7 @@ class CoinsRated extends Component {
 
     return (
       <div className="user-table">
+        <h3 className="user-table-heading">Your Rated Coins</h3>
         <Table striped hover className="list-table">
           <thead>
             <tr>

@@ -22,3 +22,7 @@
   text-align: left;
   font-size: 13px;
 }
+.user-table-heading {
+  font-family: Montserrat,sans-serif;
+  text-align: center;
+}
