@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 
+import { Table } from 'reactstrap'
+
 class CoinsRated extends Component {
   state = {}
 
@@ -25,9 +27,14 @@ class CoinsRated extends Component {
   render() {
     console.log(this.state);
     return (
-      <div>
+      <Table>
+        <thead>
+          <th>#</th>
+          <th>Name</th>
+          <th></th>
+        </thead>
         {this.state.coins && this.renderCoins()}
-      </div>
+      </Table>
     )
   }
 }
