@@ -1,0 +1,21 @@
+.contact-header-container {
+  font-family: 'Hind', sans-serif;
+  background-color: #cef0fa;
+  color: #5b6a72;
+}
+
+.contact-header {
+  padding: 30px 50px;
+}
+
+.contact h2 {
+  line-height: 50px;
+  letter-spacing: 3px;
+}
+
+.contact-form {
+  width: 60%;
+  text-align: left;
+  margin-top: 50px;
+  margin-bottom: 100px;
+}

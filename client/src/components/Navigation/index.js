@@ -36,10 +36,6 @@ class Navigation extends Component {
               <Link to="/faq">FAQ</Link>
             </NavItem>
 
-            <NavItem>
-              <Link to="/resources">Resources</Link>
-            </NavItem>
-
             {localStorage.getItem("loggedIn") ?
               <ProfileDropdown /> :
               <LoginDropdown />

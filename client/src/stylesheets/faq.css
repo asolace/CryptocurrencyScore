@@ -1,6 +1,3 @@
-.faq {
-}
-
 .faq-header-container {
   font-family: 'Hind', sans-serif;
   background-color: #cef0fa;
@@ -15,17 +12,6 @@
 .faq h2 {
   line-height: 50px;
   letter-spacing: 3px;
-}
-
-.faq-nav {
-  background-color: #e6fce6;
-  padding: 10px 0px;
-}
-
-.faq hr {
-  margin-top: 0px;
-  margin-bottom: 0px;
-  border-top: 1px solid rgba(0, 0, 0, 0.15);
 }
 
 .faq-content-container {

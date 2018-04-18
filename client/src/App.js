@@ -6,6 +6,7 @@ import * as actions from './actions/userActions'
 import './App.css';
 
 import Coin from './components/Coin'
+import Contact from './components/Contact'
 import Disclaimer from './components/Disclaimer'
 import Faq from './components/Faq'
 import Footer from './components/Footer'
@@ -34,6 +35,7 @@ class App extends Component {
             <Route path="/disclaimer" component={ Disclaimer } />
             <Route path="/profile" component={ User } />
           </div>
+          <Route path="/contact" component={ Contact } />
           <Route path="/info/:id" component={ Coin } />
           <Route path="/faq" component={ Faq } />
           <Footer />

@@ -41,9 +41,10 @@ class Footer extends Component {
             <Col>
               <p>
                 &copy; 2018 Cryptocurrency Score |
-                <a href="https://www.asolace.com" target="_blank" rel="noopener noreferrer"> Asolace Development</a> |
+                <a href="https://www.asolace.com" target="_blank" rel="noopener noreferrer"> Asolace </a> |
                 <Link to="/disclaimer"> Disclaimer</Link> |
-                <Link to="/faq"> FAQ</Link>
+                <Link to="/faq"> FAQ</Link> |
+                <Link to="/contact"> Contact</Link> |
               </p>
             </Col>
             <Col>
