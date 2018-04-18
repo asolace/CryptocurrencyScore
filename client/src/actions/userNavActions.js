@@ -9,6 +9,6 @@ export const renderContent = item => dispatch => {
       dispatch({ type: NAV_COIN })
       break
     default:
-      dispatch({ type: NAV_COIN })
+      dispatch({ type: NAV_PROFILE })
   }
 }

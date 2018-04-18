@@ -14,15 +14,14 @@ class Profile extends Component {
   }
 
   handleChange = event => {
-    this.setState({ [event.target.name]: event.target.value }, () => {
-      this.props.updateUsername(this.state.username)
-    })
+    this.setState({ [event.target.name]: event.target.value })
   }
 
   handleUsernameSubmit = async event => {
     event.preventDefault()
     let result = await axios.post('/api/username_update', this.state)
     this.setState({ updateReponse: result.data })
+    this.props.updateUsername(this.state.username)
   }
 
   render() {
