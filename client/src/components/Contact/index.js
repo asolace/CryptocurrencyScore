@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Alert, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 class Contact extends Component {
   state = {
@@ -15,7 +15,6 @@ class Contact extends Component {
 
   onSubmit = event => {
     event.preventDefault()
-
     axios.post('/api/contact', this.state)
     this.setState({
       name: '',
@@ -38,15 +37,15 @@ class Contact extends Component {
           <Form>
             <FormGroup>
               <Label for="name">Name</Label>
-              <Input type="name" name="name" id="name" placeholder="John Doe III" onChange={this.onChange} />
+              <Input type="name" name="name" id="name" value={this.state.name} placeholder="John Doe III" onChange={this.onChange} />
             </FormGroup>
             <FormGroup>
               <Label for="email">Email</Label>
-              <Input type="email" name="email" id="email" placeholder="example@email.com" onChange={this.onChange} />
+              <Input type="email" name="email" id="email" value={this.state.email} placeholder="example@email.com" onChange={this.onChange} />
             </FormGroup>
             <FormGroup>
               <Label for="message">Message</Label>
-              <Input type="textarea" name="message" id="message" onChange={this.onChange} />
+              <Input type="textarea" name="message" id="message" value={this.state.message} onChange={this.onChange} />
             </FormGroup>
 
             <Button color="success" type="submit" className="float-right" onClick={this.onSubmit}>Send</Button>

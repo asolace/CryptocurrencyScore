@@ -25,6 +25,7 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 require('./routes/userRoutes')(app)
+require('./routes/contactRoutes')(app)
 require('./routes/coinRoutes')(app)
 require('./routes/userRatingRoutes')(app)
 
