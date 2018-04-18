@@ -3,6 +3,7 @@ import Boxes from './Boxes'
 
 const Legend = () =>
   <div className="legend">
+    <h4 className="legend-header">Legend</h4>
     <ul className="flex-container">
       <Boxes boxColor="gb-a" grade="A" title="Excellent"/>
       <Boxes boxColor="gb-b" grade="B" title="Good"/>
