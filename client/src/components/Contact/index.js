@@ -1,29 +1,64 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { Alert, Button, Form, FormGroup, Label, Input } from 'reactstrap';
+
+import helpers from '../../helpers'
+import { Alert, Button, Form, FormGroup, FormFeedback, Label, Input } from 'reactstrap'
 
 class Contact extends Component {
   state = {
     name: '',
     email: '',
     message: '',
+    alertVisible: false,
+    messageSuccess: false,
+    invalidForm: false
   }
 
   onChange = event => {
     this.setState({ [event.target.name]: event.target.value })
   }
 
-  onSubmit = event => {
+  onSubmit = async event => {
     event.preventDefault()
-    axios.post('/api/contact', this.state)
-    this.setState({
-      name: '',
-      email: '',
-      message: '',
-    })
+    if (this.validateForm()) {
+      let response = await axios.post('/api/contact', this.state)
+
+      if (response.data.success) {
+        this.setState({
+          name: '',
+          email: '',
+          message: '',
+          alertVisible: true,
+          messageSuccess: true,
+          invalidForm: false,
+        })
+      } else {
+        this.setState({
+          alertVisible: true,
+          messageSuccess: false,
+          invalidForm: false,
+        })
+      }
+    }
+  }
+
+  onAlertDismiss = () => {
+    this.setState({ alertVisible: false });
+  }
+
+  validateForm = () => {
+    const { name, email, message } = this.state
+
+    if (name.length < 1 || !helpers.validateEmail(email) || message.length < 5) {
+      this.setState({ invalidForm: true })
+      return false
+    }
+    return true
   }
 
   render() {
+    const { messageSuccess, alertVisible, invalidForm, name, message, email } = this.state
+
     return(
       <div className="contact">
         <div className="contact-header-container">
@@ -34,18 +69,24 @@ class Contact extends Component {
         </div>
 
         <div className="contact-form container">
+          <Alert color={messageSuccess ? "success" : "danger"} isOpen={alertVisible} toggle={this.onAlertDismiss}>
+            {messageSuccess ? "Message Sent" : "Failed to send message"}
+          </Alert>
           <Form>
             <FormGroup>
               <Label for="name">Name</Label>
-              <Input type="name" name="name" id="name" value={this.state.name} placeholder="John Doe III" onChange={this.onChange} />
+              <Input invalid={invalidForm && name.length < 1} type="name" name="name" id="name" value={name} placeholder="John Doe III" onChange={this.onChange} />
+              <FormFeedback>This field is required!</FormFeedback>
             </FormGroup>
             <FormGroup>
               <Label for="email">Email</Label>
-              <Input type="email" name="email" id="email" value={this.state.email} placeholder="example@email.com" onChange={this.onChange} />
+              <Input invalid={invalidForm && !helpers.validateEmail(email)} type="email" name="email" id="email" value={email} placeholder="example@email.com" onChange={this.onChange} />
+              <FormFeedback>Must be a valid email</FormFeedback>
             </FormGroup>
             <FormGroup>
               <Label for="message">Message</Label>
-              <Input type="textarea" name="message" id="message" value={this.state.message} onChange={this.onChange} />
+              <Input invalid={invalidForm && message.length < 5} type="textarea" name="message" id="message" value={message} onChange={this.onChange} />
+              <FormFeedback>Message length must be longer</FormFeedback>
             </FormGroup>
 
             <Button color="success" type="submit" className="float-right" onClick={this.onSubmit}>Send</Button>

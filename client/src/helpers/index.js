@@ -89,6 +89,11 @@ module.exports = {
   utcToDate: string => {
     let date = new Date(parseInt(string, 10) * 1000)
     return date.toString()
+  },
+
+  validateEmail: email => {
+    let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    return re.test(String(email).toLowerCase())
   }
 
 }

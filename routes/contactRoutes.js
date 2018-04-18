@@ -14,7 +14,7 @@ module.exports = app => {
       const message = await newMessage.save()
       res.send({ message, success: true })
     } catch (err) {
-      res.status(422).send(err)
+      res.status(422).send({ err, success: false })
     }
   })
 }
