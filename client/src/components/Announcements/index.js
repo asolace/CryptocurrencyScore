@@ -21,14 +21,6 @@ class Announcements extends Component {
           </ul>
         </Alert>
 
-        <Alert color="info" isOpen={this.state.info} toggle={this.infoDismiss}>
-          <span className="announcement-header">Website currently under development!</span>
-          <ul className="announcements-container">
-            <li>Coin updates ever 5 minutes from <a href="https://coinmarketcap.com/">Coinmarketcap</a> (refreash the page).</li>
-            <li>Community based rating coming soon.</li>
-          </ul>
-        </Alert>
-
         <Alert color="warning" isOpen={this.state.warning} toggle={this.warningDismiss}>
           <span className="announcement-header">Coins to strongly avoid!</span>
           <ul className="announcements-container">
