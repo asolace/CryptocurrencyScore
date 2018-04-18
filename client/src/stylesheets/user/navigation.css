@@ -37,7 +37,7 @@
   background-color: #7041A9;
 }
 .profile-nav-icon img {
-  border-radius: 10px;
+  border-radius: 50%;
   vertical-align: middle;
 }
 
@@ -45,4 +45,5 @@
   color: white;
   padding-top: 15px;
   margin-bottom: -10px;
+  font-family: Montserrat,sans-serif;
 }
