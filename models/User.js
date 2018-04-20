@@ -6,7 +6,7 @@ const UserSchema = mongoose.Schema({
   email: { type: String, required: true, unique: true },
   googlePhotos: String,
   ratingsCount: Number,
-  influenceRating: Number
+  influenceRating: { type: Number, default: 1 }
 })
 
 const User = module.exports = mongoose.model('User', UserSchema)

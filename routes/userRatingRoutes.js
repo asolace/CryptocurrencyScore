@@ -1,4 +1,5 @@
 const UserRating = require('../models/UserRating')
+const Coin = require('../models/Coin')
 
 module.exports = app => {
   app.get('/api/user/rating-list', async (req, res) => {
@@ -31,7 +32,8 @@ module.exports = app => {
   app.post('/api/coin-update', (req, res) => {
     const { coinId, userId, coinRatingUpdate } = req.body
 
-    UserRating.addOrUpdateUserRating(coinId, userId, coinRatingUpdate, message => {
+    UserRating.addOrUpdateUserRating(coinId, userId, coinRatingUpdate, (message, ratingData, isSaving) => {
+      Coin.calculateAndUpdateCoinRating(ratingData, isSaving)
       res.json(message)
     })
   })

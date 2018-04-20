@@ -86,8 +86,8 @@ class FullList extends Component {
 
   renderRating = (rating, id, symbol) => {
     let user = this.props.user ? this.props.user._id : ''
-    let devId = '5aa825ea429914ba0cf5fe0d'
-    let prodId = '5aa8276f2383e20014458794'
+    let devId = '5ad9ebb3a083fc00141d2316'
+    let prodId = '5ad9f0799674903f4fc87604'
 
     switch (this.state.ratingRender) {
       case 'main':
@@ -151,8 +151,8 @@ class FullList extends Component {
 
   render() {
     const { page, sortId, sortAsc, ratingRender, fetching, viewAll } = this.state
-    let devId = '5aa825ea429914ba0cf5fe0d'
-    let prodId = '5aa8276f2383e20014458794'
+    let devId = '5ad9ebb3a083fc00141d2316'
+    let prodId = '5ad9f0799674903f4fc87604'
 
     return (
       <div className="home">

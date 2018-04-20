@@ -13,7 +13,6 @@ module.exports = app => {
       return
     }
 
-
     const page = Number.parseInt(req.params.page)
     const max = page > 1 ? page * 100 + 100 : 100
     const min = page > 1 ? page * 100 : 0
@@ -54,7 +53,7 @@ module.exports = app => {
   app.post('/api/coin/master-coin-update', (req, res) => {
     const { userId, coinId, coinRatingUpdate } = req.body
 
-    if ((userId === '5aa825ea429914ba0cf5fe0d') || (userId === '5aa8276f2383e20014458794')) {
+    if ((userId === '5ad9ebb3a083fc00141d2316') || (userId === '5ad9f0799674903f4fc87604')) { // Prod - Dev
       let query = { _id: coinId }
 
       Coin.findOne(query).then(data => {
@@ -75,7 +74,7 @@ module.exports = app => {
   app.post('/api/coin/master-reset', (req, res) => {
     const { userId } = req.body
 
-    if ((userId === '5aa825ea429914ba0cf5fe0d') || (userId === '5aa8276f2383e20014458794')) {
+    if ((userId === '5ad9ebb3a083fc00141d2316') || (userId === '5ad9f0799674903f4fc87604')) {
 
       Coin.update({}, { rating: 'N' }, { multi: true }, (err, count) => {
         if (err) console.log(err)
