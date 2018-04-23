@@ -14,12 +14,10 @@ import Paginate from './Paginate'
 
 import { Sparklines, SparklinesLine } from 'react-sparklines';
 import axios from 'axios'
-import { Button, Table, Nav, NavItem, NavLink, Row, Col } from 'reactstrap'
-import classnames from 'classnames'
+import { Button, Table, Row, Col } from 'reactstrap'
 
 class FullList extends Component {
   state = {
-    ratingRender: 'main',
     sortId: 'rank',
     sortAsc: true,
     fetching: true,
@@ -41,6 +39,7 @@ class FullList extends Component {
   }
 
   mappedCoins = () => {
+    console.log(this.props.coins);
     return this.props.coins
       .filter(coin => coin.rank)
       .sort((a, b) => {
@@ -54,7 +53,8 @@ class FullList extends Component {
         return (
           <tr className="rating-list-table" key={i}>
             <td>{ rank }</td>
-            <td>{ this.renderRating(rating, _id, symbol) }</td>
+            <td>{ this.renderRating(rating, _id) }</td>
+            <td>{ this.props.user && this.renderUsersRating(rating, _id) }</td>
 
             {/* NAME */}
             <td>
@@ -84,35 +84,22 @@ class FullList extends Component {
       })
   }
 
-  renderRating = (rating, id, symbol) => {
+  renderRating = (rating, id) => {
     let user = this.props.user ? this.props.user._id : ''
     let devId = '5ad9ebb3a083fc00141d2316'
     let prodId = '5ad9f0799674903f4fc87604'
 
-    switch (this.state.ratingRender) {
-      case 'main':
-        return (
-          (user === devId || user === prodId) ?
-          <RatingDropdown rating={rating} coinId={id}/> :
-          <span className={`grade-box ${helpers.renderRatingBox(rating)}`}>
-            {rating}
-          </span>
-        )
-      case 'user':
-        return (
-          (user !== devId && user !== prodId) ?
-          <RatingDropdown coinId={id} symbol={symbol} userId={user}/> :
-          <span className={`grade-box ${helpers.renderRatingBox(rating)}`}>
-            {rating}
-          </span>
-        )
-      default:
-        return (
-          <span className={`grade-box ${helpers.renderRatingBox(rating)}`}>
-            {rating}
-          </span>
-        )
-    }
+    return (
+      (user === devId || user === prodId) ?
+      <RatingDropdown rating={rating} coinId={id}/> :
+      <span className={`grade-box ${helpers.renderRatingBox(rating)}`}>
+        {rating}
+      </span>
+    )
+  }
+
+  renderUsersRating = (rating, id) => {
+    return <RatingDropdown coinId={id} />
   }
 
 
@@ -150,7 +137,7 @@ class FullList extends Component {
 
 
   render() {
-    const { page, sortId, sortAsc, ratingRender, fetching, viewAll } = this.state
+    const { page, sortId, sortAsc, fetching, viewAll } = this.state
     let devId = '5ad9ebb3a083fc00141d2316'
     let prodId = '5ad9f0799674903f4fc87604'
 
@@ -159,27 +146,7 @@ class FullList extends Component {
         <Announcements />
         <Legend />
         <Row>
-          <Col>
-            {this.props.user &&
-              <Nav tabs>
-                <NavItem>
-                  <NavLink
-                    className={`rating-tab ${classnames({ active: ratingRender === 'main' })}`}
-                    onClick={() => { this.toggleTab('main'); }}
-                  >
-                    Main
-                  </NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink
-                    className={`rating-tab ${classnames({ active: ratingRender === 'user' })}`}
-                    onClick={() => { this.toggleTab('user'); }}
-                  >
-                    Yours
-                  </NavLink>
-                </NavItem>
-              </Nav>}
-          </Col>
+
 
           {/* MASTER RESET BUTTON */}
           {this.props.user && (this.props.user._id === devId || this.props.user._id === prodId) &&
@@ -214,6 +181,7 @@ class FullList extends Component {
                 # <SortSymbol sortId={sortId} sortAsc={sortAsc} divId="rank"/>
               </th>
               <th>Rating</th>
+              {this.props.user && <th>Yours</th>}
               <th id="name" className="list-sort" onClick={this.toggleSort}>
                 Name <SortSymbol sortId={sortId} sortAsc={sortAsc} divId="name"/>
               </th>

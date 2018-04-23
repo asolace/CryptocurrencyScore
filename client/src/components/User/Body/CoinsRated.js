@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import axios from 'axios'
+import { connect } from 'react-redux'
 
 import SortSymbol from '../../Templates/SortSymbol'
 import RatingDropdown from '../../Templates/RatingDropdown'
@@ -14,11 +14,7 @@ class CoinsRated extends Component {
   }
 
   async componentDidMount() {
-    let result = await axios.get('/api/user/rating-list', {
-      params: { _userId: this.props.userId }
-    })
-
-    this.setState({ coins: result.data })
+    this.setState({ coins: this.props.userCoinList })
   }
 
   renderCoins = () => {
@@ -53,6 +49,7 @@ class CoinsRated extends Component {
   }
 
   render() {
+    console.log(this.state);
     const { sortId, sortAsc } = this.state
 
     return (
@@ -78,4 +75,8 @@ class CoinsRated extends Component {
   }
 }
 
-export default CoinsRated
+function mapStateToProps({ userCoinList }) {
+  return { userCoinList }
+}
+
+export default connect(mapStateToProps)(CoinsRated)

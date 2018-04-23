@@ -19,6 +19,7 @@ class RatingDropdown extends React.Component {
     var url = '/api/coin-update'
     var rating = ''
 
+    // Sets API Endpoint URL
     if (user === devId || user === prodId) {
       url = "/api/coin/master-coin-update"
       rating = this.props.rating

@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import * as actions from '../../actions/userActions'
 import axios from 'axios'
 
 import { Row, Col } from 'reactstrap'
@@ -12,6 +14,8 @@ class User extends Component {
 
   async componentDidMount() {
     const result = await axios.get('/api/user_data')
+    this.props.fetchUserCoinList(this.props.userId)
+
     this.setState({ user: result.data })
   }
 
@@ -35,4 +39,4 @@ class User extends Component {
   }
 }
 
-export default User
+export default connect(null, actions)(User)

@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { AUTHENTICATE, FETCH_USER, LOGOUT_USER, UPDATE_USERNAME } from '../constants/user'
+import { AUTHENTICATE, FETCH_USER, LOGOUT_USER, UPDATE_USERNAME, FETCH_USER_COIN_LIST } from '../constants/user'
 
 export const authenticate = () => async dispatch => {
   const res = await axios.get('/api/auth')
@@ -28,4 +28,11 @@ export const logoutUser = history => dispatch => {
 
 export const updateUsername = username => dispatch => {
   dispatch({ type: UPDATE_USERNAME, payload: username })
+}
+
+export const fetchUserCoinList = userId => async dispatch => {
+  let result = await axios.get('/api/user/rating-list', {
+    params: { _userId: userId }
+  })
+  dispatch({ type: FETCH_USER_COIN_LIST, payload: result.data})
 }

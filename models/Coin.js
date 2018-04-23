@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
-const UserRating = require('./UserRating')
+const User = require('../models/User')
+const ObjectId = mongoose.Schema.ObjectId
 const helper = require('../helper')
 
 const CoinSchema = mongoose.Schema({
@@ -29,7 +30,8 @@ const CoinSchema = mongoose.Schema({
   percent_change_7d: Number,
   last_updated: String,
   ico: Object,
-  rating: { type: String, default: "N" }
+  rating: { type: String, default: "N" },
+  ratedBy: [{ type: ObjectId, ref: 'User' }]
 })
 
 const Coin = module.exports = mongoose.model('Coin', CoinSchema)
@@ -38,39 +40,61 @@ const Coin = module.exports = mongoose.model('Coin', CoinSchema)
 module.exports.calculateAndUpdateCoinRating = async (ratingData, isSaving) => {
   const { _coinId, productOfUiAndUr, userUi } = ratingData
 
-  const CoinIdToSearch = mongoose.Types.ObjectId(_coinId)
-  let SumProductOfAllUiAndUrOfRatedCoinArray = await UserRating
-    .aggregate([
-      { $match: { '_coinId': CoinIdToSearch }},
-      { $group: {
-        _id: null,
-        sumProductOfAllUiAndUr: { $sum: '$productOfUiAndUr' },
-        sumOfAllUi: { $sum: '$userUi' }
-      }}
-    ])
+  const query = { _id: _coinId }
+  const coin = await Coin.findOne(query).select('ratedBy')
 
-  // Model.save don't update fast enough therefore you have to passin the data object to account for a more updated rating calculation
-    if (isSaving) {
-      if (SumProductOfAllUiAndUrOfRatedCoinArray.length === 0) {
-        SumProductOfAllUiAndUrOfRatedCoinArray.push({
-          _id: null,
-          sumProductOfAllUiAndUr: 0,
-          sumOfAllUi: 0
-        })
-      }
-      SumProductOfAllUiAndUrOfRatedCoinArray[0].sumProductOfAllUiAndUr += productOfUiAndUr
-      SumProductOfAllUiAndUrOfRatedCoinArray[0].sumOfAllUi += userUi
-    }
+  console.log(coin);
 
-  let sumProdUiUr = SumProductOfAllUiAndUrOfRatedCoinArray[0].sumProductOfAllUiAndUr
-  let sumUi = SumProductOfAllUiAndUrOfRatedCoinArray[0].sumOfAllUi
 
-  let ratingAsNumber = helper.calculateRatingAsNumber(sumProdUiUr, sumUi)
-  let ratingAsLetter = helper.convertRatingNumberToLetter(ratingAsNumber)
-
-  let updatedCoin = await Coin.findOneAndUpdate({ _id: CoinIdToSearch }, { rating: ratingAsLetter })
-  console.log(updatedCoin.name, ratingAsLetter);
+  // const CoinIdToSearch = mongoose.Types.ObjectId(_coinId)
+  // let SumProductOfAllUiAndUrOfRatedCoinArray = await User
+  //   .aggregate([
+  //     { $match: { '_coinId': CoinIdToSearch }},
+  //     { $group: {
+  //       _id: null,
+  //       sumProductOfAllUiAndUr: { $sum: '$productOfUiAndUr' },
+  //       sumOfAllUi: { $sum: '$userUi' }
+  //     }}
+  //   ])
+  //
+  // // Model.save don't update fast enough therefore you have to passin the data object to account for a more updated rating calculation
+  //   if (isSaving) {
+  //     if (SumProductOfAllUiAndUrOfRatedCoinArray.length === 0) {
+  //       SumProductOfAllUiAndUrOfRatedCoinArray.push({
+  //         _id: null,
+  //         sumProductOfAllUiAndUr: 0,
+  //         sumOfAllUi: 0
+  //       })
+  //     }
+  //     SumProductOfAllUiAndUrOfRatedCoinArray[0].sumProductOfAllUiAndUr += productOfUiAndUr
+  //     SumProductOfAllUiAndUrOfRatedCoinArray[0].sumOfAllUi += userUi
+  //   }
+  //
+  // let sumProdUiUr = SumProductOfAllUiAndUrOfRatedCoinArray[0].sumProductOfAllUiAndUr
+  // let sumUi = SumProductOfAllUiAndUrOfRatedCoinArray[0].sumOfAllUi
+  //
+  // let ratingAsNumber = helper.calculateRatingAsNumber(sumProdUiUr, sumUi)
+  // let ratingAsLetter = helper.convertRatingNumberToLetter(ratingAsNumber)
+  //
+  // let updatedCoin = await Coin.findOneAndUpdate({ _id: CoinIdToSearch }, { rating: ratingAsLetter })
+  // console.log(updatedCoin.name, ratingAsLetter);
 }
+
+module.exports.addUserToCoinRatedByArray = (ratingData, userId, cb) => {
+  let query = { _id: ratingData._coinId, 'ratedBy._id': { $ne: userId }}
+
+  Coin.update(query, { $addToSet: { ratedBy: { _id: userId }}}, (err, coin) => {
+    if (err) console.log(`Error in pushing user id to rated by in Coins: ${err}`)
+    cb(ratingData, true)
+  })
+}
+
+
+
+
+////////////////////////////////////////
+// UPDATE COIN DATA FORM API SECTION //
+///////////////////////////////////////
 
 // Updates Coin Data from API
 module.exports.addOrUpdateCoin = coinData => {

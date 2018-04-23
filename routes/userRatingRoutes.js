@@ -1,9 +1,10 @@
+const User = require('../models/User')
 const UserRating = require('../models/UserRating')
 const Coin = require('../models/Coin')
 
 module.exports = app => {
   app.get('/api/user/rating-list', async (req, res) => {
-    let result = await UserRating.find()
+    let result = await User.find()
       .where(req.query)
       .where({rating: { $ne: 'N' }})
       .populate({
@@ -15,7 +16,7 @@ module.exports = app => {
   })
 
   app.get('/api/user/rating', async (req, res) => {
-    let result = await UserRating.findOne(req.query)
+    let result = await User.findOne(req.query)
     let response = {}
 
     if (result === null) {
@@ -32,14 +33,14 @@ module.exports = app => {
   app.post('/api/coin-update', (req, res) => {
     const { coinId, userId, coinRatingUpdate } = req.body
 
-    UserRating.addOrUpdateUserRating(coinId, userId, coinRatingUpdate, (message, ratingData, isSaving) => {
+    User.addOrUpdateUserRating(coinId, userId, coinRatingUpdate, (message, ratingData, isSaving) => {
       Coin.calculateAndUpdateCoinRating(ratingData, isSaving)
       res.json(message)
     })
   })
 
   app.get('/api/user/ratings-count', async (req, res) => {
-    let result = await UserRating.find()
+    let result = await User.find()
       .where(req.query).count()
 
     res.json({ count: result })
