@@ -32,7 +32,7 @@ export const updateUsername = username => dispatch => {
 
 export const fetchUserCoinList = userId => async dispatch => {
   let result = await axios.get('/api/user/rating-list', {
-    params: { _userId: userId }
+    params: { _id: userId }
   })
   dispatch({ type: FETCH_USER_COIN_LIST, payload: result.data})
 }

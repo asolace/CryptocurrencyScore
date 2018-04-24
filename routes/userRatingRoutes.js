@@ -3,16 +3,10 @@ const UserRating = require('../models/UserRating')
 const Coin = require('../models/Coin')
 
 module.exports = app => {
-  app.get('/api/user/rating-list', async (req, res) => {
-    let result = await User.find()
-      .where(req.query)
-      .where({rating: { $ne: 'N' }})
-      .populate({
-        path: '_coinId',
-        select: ['name', 'symbol', 'url', 'logo']
-      })
-
-    res.json(result)
+  app.get('/api/user/rating-list', (req, res) => {
+    User.getUserRatingList(req.query._id, userRatedCoins => {
+      res.json(userRatedCoins)
+    })
   })
 
   app.get('/api/user/rating', async (req, res) => {
@@ -40,8 +34,7 @@ module.exports = app => {
   })
 
   app.get('/api/user/ratings-count', async (req, res) => {
-    let result = await User.find()
-      .where(req.query).count()
+    let result = await User.find().where(req.query).count()
 
     res.json({ count: result })
   })

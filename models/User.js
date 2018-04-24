@@ -59,3 +59,24 @@ module.exports.addOrUpdateUserRating = async (coinId, userId, coinRatingUpdate, 
     }
   })
 }
+
+module.exports.getUserRatingList = async (_id, cb) => {
+  UserIdToSearch = mongoose.Types.ObjectId(_id)
+
+  const result = await User.aggregate([
+    { $match: { _id: UserIdToSearch }},
+    { $addFields: {
+      'ratedCoins': {
+        $filter: {
+          input: '$ratedCoins',
+          as: 'ratedCoins',
+          cond: { $eq: ['$$ratedCoins.deleted', false]}
+        }
+      }
+    }},
+    { $unwind: '$ratedCoins' },
+    { $project: { ratedCoins: '$ratedCoins' }}
+  ])
+
+  cb(result)
+}

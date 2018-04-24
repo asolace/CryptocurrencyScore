@@ -39,7 +39,7 @@ class FullList extends Component {
   }
 
   mappedCoins = () => {
-    console.log(this.props.coins);
+
     return this.props.coins
       .filter(coin => coin.rank)
       .sort((a, b) => {
