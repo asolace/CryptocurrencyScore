@@ -54,7 +54,7 @@ module.exports.addOrUpdateUserRating = async (coinId, userId, coinRatingUpdate, 
         if (err) console.log(`Error in updating user rating coin: ${err}`)
 
         let resposeMessage = { success: true, message: 'Coin rating update success'}
-        cb(resposeMessage, ratingData._coinId)
+        cb(resposeMessage, ratingData)
       })
     }
   })
@@ -106,7 +106,7 @@ module.exports.getUserRatingList = async (_id, cb) => {
     { $unwind: '$coin'},
     { $project:
       {
-        _id: '$ratedCoins._id',
+        _id: '$coin._id',
         userRating: '$ratedCoins.rating',
         name: '$coin.name',
         symbol: '$coin.symbol',

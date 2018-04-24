@@ -37,8 +37,8 @@ const CoinSchema = mongoose.Schema({
 const Coin = module.exports = mongoose.model('Coin', CoinSchema)
 
 // The crux of the app (The magical algorithm) jk it's simple
-module.exports.calculateAndUpdateCoinRating = async (_coinId, isSaving) => {
-  const CoinIdToSearch = mongoose.Types.ObjectId(_coinId)
+module.exports.calculateAndUpdateCoinRating = async (ratingData, isNew) => {
+  const CoinIdToSearch = mongoose.Types.ObjectId(ratingData._coinId)
 
   const SumProductOfAllUiAndUrOfRatedCoinArray = await Coin.aggregate([
     { $match: { _id: CoinIdToSearch }},
@@ -80,7 +80,7 @@ module.exports.addUserToCoinRatedByArray = (ratingData, userId, cb) => {
     if (err) console.log(`Error in pushing user id to rated by in Coins: ${err}`)
 
     let responseMessage = { success: true, message: 'Coin add rating success'}
-    cb(ratingData._coinId)
+    cb(responseMessage, ratingData)
   })
 }
 

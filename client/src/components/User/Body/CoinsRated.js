@@ -27,7 +27,7 @@ class CoinsRated extends Component {
               {` ${name} (${symbol})`}
             </td>
             <td>
-              <RatingDropdown coinId={_id} rating={userRating} userId={this.props.userId}/>
+              <RatingDropdown coinId={_id} rating={userRating} />
             </td>
           </tr>
         )
@@ -46,6 +46,7 @@ class CoinsRated extends Component {
 
   render() {
     const { sortId, sortAsc } = this.state
+
     console.log(this.props.userCoinList);
 
     return (

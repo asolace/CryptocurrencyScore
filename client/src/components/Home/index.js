@@ -39,7 +39,6 @@ class FullList extends Component {
   }
 
   mappedCoins = () => {
-
     return this.props.coins
       .filter(coin => coin.rank)
       .sort((a, b) => {
@@ -99,7 +98,7 @@ class FullList extends Component {
   }
 
   renderUsersRating = (rating, id) => {
-    return <RatingDropdown coinId={id} />
+    return <RatingDropdown coinId={id} rating={'A'}/>
   }
 
 

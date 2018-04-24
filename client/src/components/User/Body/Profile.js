@@ -26,7 +26,6 @@ class Profile extends Component {
 
   render() {
     const { user } = this.props
-    console.log(user);
 
     return (
       <div className="user-profile-container">
