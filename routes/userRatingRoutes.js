@@ -33,8 +33,8 @@ module.exports = app => {
   app.post('/api/coin-update', (req, res) => {
     const { coinId, userId, coinRatingUpdate } = req.body
 
-    User.addOrUpdateUserRating(coinId, userId, coinRatingUpdate, (message, ratingData, isSaving) => {
-      Coin.calculateAndUpdateCoinRating(ratingData, isSaving)
+    User.addOrUpdateUserRating(coinId, userId, coinRatingUpdate, (message, coinId) => {
+      Coin.calculateAndUpdateCoinRating(coinId)
       res.json(message)
     })
   })

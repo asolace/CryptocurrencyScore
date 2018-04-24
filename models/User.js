@@ -53,7 +53,8 @@ module.exports.addOrUpdateUserRating = async (coinId, userId, coinRatingUpdate, 
       User.updateOne(query, { $set: update }, (err, user) => {
         if (err) console.log(`Error in updating user rating coin: ${err}`)
 
-        cb(ratingData, false)
+        let resposeMessage = { success: true, message: 'Coin rating update success'}
+        cb(resposeMessage, ratingData._coinId)
       })
     }
   })
