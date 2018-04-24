@@ -3,11 +3,11 @@ const UserRating = require('../models/UserRating')
 const Coin = require('../models/Coin')
 
 module.exports = app => {
-  app.get('/api/user/rating-list', (req, res) => {
-    User.getUserRatingList(req.query._id, userRatedCoins => {
-      res.json(userRatedCoins)
-    })
-  })
+  // app.get('/api/user/rating-list', (req, res) => {
+  //   User.getUserRatingList(req.query._id, userRatedCoins => {
+  //     res.json(userRatedCoins)
+  //   })
+  // })
 
   app.get('/api/user/rating', async (req, res) => {
     let result = await User.findOne(req.query)
