@@ -31,15 +31,10 @@ module.exports = app => {
   })
 
   // Entire User's data
-  app.get('/api/user_data', async (req, res) => {
-    let user
-
-    if (req.user) {
-      user = await User.findOne({ _id: req.user._id})
-    } else {
-      user = null
-    }
-    res.json(user)
+  app.get('/api/user_data', (req, res) => {
+    User.getUserData(req.user._id, user => {
+      res.json(user)
+    })
   })
 
   // Update username

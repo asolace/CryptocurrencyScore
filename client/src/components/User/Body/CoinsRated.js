@@ -13,7 +13,7 @@ class CoinsRated extends Component {
     sortAsc: true,
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     this.setState({ coins: this.props.userCoinList })
   }
 

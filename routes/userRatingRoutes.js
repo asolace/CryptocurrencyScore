@@ -33,9 +33,4 @@ module.exports = app => {
     })
   })
 
-  app.get('/api/user/ratings-count', async (req, res) => {
-    let result = await User.find().where(req.query).count()
-
-    res.json({ count: result })
-  })
 }
