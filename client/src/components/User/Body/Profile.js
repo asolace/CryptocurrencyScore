@@ -25,7 +25,8 @@ class Profile extends Component {
   }
 
   render() {
-    const { user, userCoinList } = this.props
+    const { user } = this.props
+    console.log(user);
 
     return (
       <div className="user-profile-container">
@@ -46,7 +47,7 @@ class Profile extends Component {
 
         <div>
           <Label>Coins Rated:</Label>
-          <span className="users-data">{user.ratingsCount || 0}</span>
+          <span className="users-data">{user.ratedCoins.length || 0}</span>
         </div>
 
         <div>
@@ -58,8 +59,4 @@ class Profile extends Component {
   }
 }
 
-function mapStateToProps({ userCoinList }) {
-  return { userCoinList }
-}
-
-export default connect(mapStateToProps, actions)(Profile)
+export default connect(null, actions)(Profile)

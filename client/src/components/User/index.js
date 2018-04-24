@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import * as actions from '../../actions/userActions'
-import axios from 'axios'
 
 import { Row, Col } from 'reactstrap'
 
@@ -10,25 +9,16 @@ import Loading from '../Loading'
 import Navigation from './Navigation'
 
 class User extends Component {
-  state = {}
-
-  async componentDidMount() {
-    const result = await axios.get('/api/user_data')
-    this.props.fetchUserCoinList(this.props.userId)
-
-    this.setState({ user: result.data })
-  }
-
   render() {
-    if (this.state.user) {
+    if (this.props.user) {
       return (
         <div>
           <Row>
             <Col className="user-nav-container" xs="4">
-              <Navigation user={this.state.user}/>
+              <Navigation user={this.props.user}/>
             </Col>
             <Col className="user-table-container" xs="8">
-              <Body user={this.state.user}/>
+              <Body user={this.props.user} />
             </Col>
           </Row>
         </div>
@@ -39,4 +29,8 @@ class User extends Component {
   }
 }
 
-export default connect(null, actions)(User)
+function mapStateToProps({ user }) {
+  return { user }
+}
+
+export default connect(mapStateToProps, actions)(User)

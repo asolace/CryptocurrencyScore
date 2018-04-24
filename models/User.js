@@ -75,7 +75,7 @@ module.exports.getUserData = async (_id, cb) => {
       }
     }}
   ])
-  
+
   cb(result[0])
 }
 
@@ -94,7 +94,28 @@ module.exports.getUserRatingList = async (_id, cb) => {
       }
     }},
     { $unwind: '$ratedCoins' },
-    { $project: { ratedCoins: '$ratedCoins' }}
+    { $project: { ratedCoins: '$ratedCoins' }},
+    { $lookup:
+      {
+        from: 'coins',
+        localField: 'ratedCoins._coinId',
+        foreignField: '_id',
+        as: 'coin'
+      }
+    },
+    { $unwind: '$coin'},
+    { $project:
+      {
+        _id: '$ratedCoins._id',
+        userRating: '$ratedCoins.rating',
+        name: '$coin.name',
+        symbol: '$coin.symbol',
+        logo: '$coin.logo',
+        price_usd: '$coin.price_usd',
+        percent_change_24h: '$coin.percent_change_24h',
+        ratedBy: '$coin.ratedBy'
+      }
+    }
   ])
 
   cb(result)

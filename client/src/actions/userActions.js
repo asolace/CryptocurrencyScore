@@ -30,9 +30,10 @@ export const updateUsername = username => dispatch => {
   dispatch({ type: UPDATE_USERNAME, payload: username })
 }
 
-// export const fetchUserCoinList = userId => async dispatch => {
-//   let result = await axios.get('/api/user/rating-list', {
-//     params: { _id: userId }
-//   })
-//   dispatch({ type: FETCH_USER_COIN_LIST, payload: result.data})
-// }
+export const fetchUserCoinList = userId => async dispatch => {
+  let result = await axios.get('/api/user/rating-list', {
+    params: { _id: userId }
+  })
+
+  dispatch({ type: FETCH_USER_COIN_LIST, payload: result.data})
+}

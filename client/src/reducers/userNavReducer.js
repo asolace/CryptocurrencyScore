@@ -7,6 +7,6 @@ export default function(state = null, action) {
     case NAV_COIN:
       return 'coins-rated'
     default:
-      return 'profile'
+      return 'coins-rated'
   }
 }

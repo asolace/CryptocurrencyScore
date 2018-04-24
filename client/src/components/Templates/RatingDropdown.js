@@ -17,28 +17,17 @@ class RatingDropdown extends React.Component {
     let devId = '5aa825ea429914ba0cf5fe0d'
     let prodId = '5aa8276f2383e20014458794'
     var url = '/api/coin-update'
-    var rating = ''
 
     // Sets API Endpoint URL
     if (user === devId || user === prodId) {
       url = "/api/coin/master-coin-update"
-      rating = this.props.rating
     } else {
       url = "/api/coin-update"
-      let result = await axios.get('/api/user/rating', {
-        params: {
-          _userId: user,
-          _coinId: this.props.coinId
-        }
-      })
-
-      if (!result.data.success) rating = 'N'
-      else rating = result.data.rating
     }
 
     this.setState({
       url: url,
-      rating: rating
+      rating: this.props.rating
     })
   }
 

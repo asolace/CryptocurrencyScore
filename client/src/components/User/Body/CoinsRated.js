@@ -13,15 +13,11 @@ class CoinsRated extends Component {
     sortAsc: true,
   }
 
-  componentDidMount() {
-    this.setState({ coins: this.props.userCoinList })
-  }
-
   renderCoins = () => {
-    return this.state.coins
-      .sort((a, b) => helpers.sortString(this.state.sortAsc, a._coinId, b._coinId, 'name'))
+    return this.props.userCoinList
+      .sort((a, b) => helpers.sortString(this.state.sortAsc, a, b, 'name'))
       .map((coin, i) => {
-        const { name, _id, symbol, logo } = coin._coinId
+        const { name, _id, symbol, logo, userRating } = coin
 
         return (
           <tr key={i}>
@@ -31,7 +27,7 @@ class CoinsRated extends Component {
               {` ${name} (${symbol})`}
             </td>
             <td>
-              <RatingDropdown coinId={_id} symbol={symbol} userId={this.props.userId}/>
+              <RatingDropdown coinId={_id} rating={userRating} userId={this.props.userId}/>
             </td>
           </tr>
         )
@@ -49,8 +45,8 @@ class CoinsRated extends Component {
   }
 
   render() {
-    console.log(this.state);
     const { sortId, sortAsc } = this.state
+    console.log(this.props.userCoinList);
 
     return (
       <div className="user-table">
@@ -63,11 +59,11 @@ class CoinsRated extends Component {
               <th>#</th>
               <th id="name" className="list-sort" onClick={this.toggleSort}>
                 Name <SortSymbol sortId={sortId} sortAsc={sortAsc} divId="name"/></th>
-              <th>Rating</th>
+              <th>Your Rating</th>
             </tr>
           </thead>
           <tbody>
-            {this.state.coins && this.renderCoins()}
+            {this.props.userCoinList && this.renderCoins()}
           </tbody>
         </Table>
       </div>
