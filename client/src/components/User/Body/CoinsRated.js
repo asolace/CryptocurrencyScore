@@ -9,19 +9,23 @@ import { Table } from 'reactstrap'
 
 class CoinsRated extends Component {
   state = {
-    sortId: 'index',
+    sortId: 'rank',
     sortAsc: true,
   }
 
   renderCoins = () => {
     return this.props.userCoinList
-      .sort((a, b) => helpers.sortString(this.state.sortAsc, a, b, 'name'))
+      .sort((a, b) => {
+        if (this.state.sortId !== "name") return helpers.sortNumber(this.state.sortAsc, a, b, this.state.sortId)
+        if (this.state.sortId === "name") return helpers.sortString(this.state.sortAsc, a, b, 'name')
+        else return this.state.sortAsc ? a.rank - b.rank : b.rank - a.rank
+      })
       .map((coin, i) => {
-        const { name, _id, symbol, logo, userRating } = coin
+        const { name, _id, symbol, logo, userRating, rank } = coin
 
         return (
           <tr key={i}>
-            <td>{i+1}</td>
+            <td>{rank}</td>
             <td>
               <img className="coin-list-logo" src={logo} alt=""/>
               {` ${name} (${symbol})`}
@@ -47,8 +51,6 @@ class CoinsRated extends Component {
   render() {
     const { sortId, sortAsc } = this.state
 
-    console.log(this.props.userCoinList);
-
     return (
       <div className="user-table">
         <div className="user-table-heading">
@@ -57,7 +59,9 @@ class CoinsRated extends Component {
         <Table striped hover className="list-table">
           <thead>
             <tr>
-              <th>#</th>
+              <th id="rank" className="list-sort" onClick={this.toggleSort}>
+                # <SortSymbol sortId={sortId} sortAsc={sortAsc} divId="rank"/>
+              </th>
               <th id="name" className="list-sort" onClick={this.toggleSort}>
                 Name <SortSymbol sortId={sortId} sortAsc={sortAsc} divId="name"/></th>
               <th>Your Rating</th>

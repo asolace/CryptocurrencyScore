@@ -31,7 +31,9 @@ class FullList extends Component {
     if (page === "all") this.setState({ viewAll: true })
     if (page === undefined && page !== "all") page = 1
 
-    let data = await this.props.fetchCoins(page)
+    let userId = this.props.user ? this.props.user._id : null
+
+    let data = await this.props.fetchCoins(page, userId)
     this.setState({
       fetching: data.fetching,
       page: Number.parseInt(page, 10)
@@ -98,7 +100,7 @@ class FullList extends Component {
   }
 
   renderUsersRating = (rating, id) => {
-    return <RatingDropdown coinId={id} rating={'A'}/>
+    return <RatingDropdown coinId={id} rating={rating}/>
   }
 
 

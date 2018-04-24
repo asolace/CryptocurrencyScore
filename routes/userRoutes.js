@@ -32,9 +32,13 @@ module.exports = app => {
 
   // Entire User's data
   app.get('/api/user_data', (req, res) => {
-    User.getUserData(req.user._id, user => {
-      res.json(user)
-    })
+    if (req.user) {
+      User.getUserData(req.user._id, user => {
+        res.json(user)
+      })
+    } else {
+      res.json(null)
+    }
   })
 
   // Update username

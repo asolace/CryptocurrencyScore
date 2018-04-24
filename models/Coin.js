@@ -36,6 +36,16 @@ const CoinSchema = mongoose.Schema({
 
 const Coin = module.exports = mongoose.model('Coin', CoinSchema)
 
+module.exports.getCoinsMappedWithUserRankList = async (query, _userId, cb) => {
+  let coins = await Coin.aggregate([
+    { $match: query }
+  ])
+
+  console.log(coins.length);
+  // cb(_userId)
+}
+
+
 // The crux of the app (The magical algorithm) jk it's simple
 module.exports.calculateAndUpdateCoinRating = async (ratingData, isNew) => {
   const CoinIdToSearch = mongoose.Types.ObjectId(ratingData._coinId)
@@ -72,6 +82,7 @@ module.exports.calculateAndUpdateCoinRating = async (ratingData, isNew) => {
   let updatedCoin = await Coin.findOneAndUpdate({ _id: CoinIdToSearch }, { rating: ratingAsLetter })
   console.log(`Coin (${updatedCoin.name}) rating changed to (${ratingAsLetter})`)
 }
+
 
 module.exports.addUserToCoinRatedByArray = (ratingData, userId, cb) => {
   let query = { _id: ratingData._coinId, 'ratedBy._id': { $ne: userId }}

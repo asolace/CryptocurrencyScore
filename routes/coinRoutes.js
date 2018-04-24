@@ -25,6 +25,20 @@ module.exports = app => {
       res.json({ coins, pages: 4 })
     })
 
+    // if (req.query._userId) {
+    //   Coin.getCoinsMappedWithUserRankList(query, req.query._userId, coins => {
+    //
+    //
+    //     // res.json({ coins, pages: 4 })
+    //   })
+    // } else {
+    //   Coin.find(query, (err, coins) => {
+    //     if (err) console.log(err)
+    //     console.log(coins.length);
+    //     res.json({ coins, pages: 4 })
+    //   })
+    // }
+
   })
 
   app.get('/api/coin/info', (req, res) => {

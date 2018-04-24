@@ -108,6 +108,7 @@ module.exports.getUserRatingList = async (_id, cb) => {
       {
         _id: '$coin._id',
         userRating: '$ratedCoins.rating',
+        rank: '$coin.rank',
         name: '$coin.name',
         symbol: '$coin.symbol',
         logo: '$coin.logo',

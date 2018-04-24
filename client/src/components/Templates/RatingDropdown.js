@@ -8,7 +8,6 @@ import { ButtonDropdown, DropdownToggle, DropdownMenu } from 'reactstrap';
 class RatingDropdown extends React.Component {
   state = {
     url: '/api/coin-update',
-    rating: '',
     dropdownOpen: false,
   }
 
@@ -26,8 +25,7 @@ class RatingDropdown extends React.Component {
     }
 
     this.setState({
-      url: url,
-      rating: this.props.rating
+      url: url
     })
   }
 
@@ -54,10 +52,11 @@ class RatingDropdown extends React.Component {
   }
 
   render() {
+    let rating = this.state.rating || this.props.rating
     return (
       <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-        <DropdownToggle className={`gb-sm ${helpers.renderRatingBox(this.state.rating)}`} caret>
-          {this.state.rating}
+        <DropdownToggle className={`gb-sm ${helpers.renderRatingBox(rating)}`} caret>
+          {rating}
         </DropdownToggle>
         <DropdownMenu className="change-list-container">
           <ul className="change-list">
