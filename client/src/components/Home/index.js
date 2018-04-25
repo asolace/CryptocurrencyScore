@@ -60,7 +60,7 @@ class FullList extends Component {
           <tr className="rating-list-table" key={i}>
             <td>{ rank }</td>
             <td>{ this.renderRating(rating, _id) }</td>
-            <td>{ this.props.user && this.renderUsersRating(userRating, _id) }</td>
+            { this.props.user && <td>{this.renderUsersRating(userRating, _id)}</td> }
 
             {/* NAME */}
             <td>
