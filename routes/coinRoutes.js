@@ -19,25 +19,17 @@ module.exports = app => {
 
     let query = {rank: { $gt: min, $lte: max }}
 
-    Coin.find(query, (err, coins) => {
-      if (err) console.log(err)
+    if (req.user) {
+      Coin.getCoinsMappedWithUserRankList(query, req.user._id, coins => {
+        res.json({ coins, pages: 4 })
+      })
+    } else {
+      Coin.find(query, (err, coins) => {
+        if (err) console.log(err)
 
-      res.json({ coins, pages: 4 })
-    })
-
-    // if (req.query._userId) {
-    //   Coin.getCoinsMappedWithUserRankList(query, req.query._userId, coins => {
-    //
-    //
-    //     // res.json({ coins, pages: 4 })
-    //   })
-    // } else {
-    //   Coin.find(query, (err, coins) => {
-    //     if (err) console.log(err)
-    //     console.log(coins.length);
-    //     res.json({ coins, pages: 4 })
-    //   })
-    // }
+        res.json({ coins, pages: 4 })
+      })
+    }
 
   })
 

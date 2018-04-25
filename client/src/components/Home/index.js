@@ -50,12 +50,17 @@ class FullList extends Component {
       })
       .map((coin, i) => {
         const { _id, rank, logo, name, market_cap_usd, price_usd, percent_change_1h, percent_change_24h, percent_change_7d, symbol, rating } = coin
+        let userRating = 'N'
+
+        if (coin.userRating && coin.userRating.length !== 0) {
+          userRating = coin.userRating[0]
+        }
 
         return (
           <tr className="rating-list-table" key={i}>
             <td>{ rank }</td>
             <td>{ this.renderRating(rating, _id) }</td>
-            <td>{ this.props.user && this.renderUsersRating(rating, _id) }</td>
+            <td>{ this.props.user && this.renderUsersRating(userRating, _id) }</td>
 
             {/* NAME */}
             <td>

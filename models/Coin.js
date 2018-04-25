@@ -37,12 +37,48 @@ const CoinSchema = mongoose.Schema({
 const Coin = module.exports = mongoose.model('Coin', CoinSchema)
 
 module.exports.getCoinsMappedWithUserRankList = async (query, _userId, cb) => {
+  const UserIdToSearch = mongoose.Types.ObjectId(_userId)
+
   let coins = await Coin.aggregate([
-    { $match: query }
+    { $match: query },
+    { $addFields: {
+      'ratedBy': {
+        $filter: {
+          input: '$ratedBy',
+          as: 'ratedBy',
+          cond: { $in: ['$$ratedBy', [UserIdToSearch]]}
+        }
+      }
+    }},
+    { $lookup:
+      {
+        from: 'users',
+        localField: 'ratedBy',
+        foreignField: '_id',
+        as: 'userRating'
+      }
+    },
+    { $addFields: {
+      'userRating': { $arrayElemAt: ['$userRating.ratedCoins', 0] }
+    }},
+    { $addFields: {
+      'userRating': {
+        $filter: {
+          input: '$userRating',
+          as: 'userRating',
+          cond: { $and: [
+            { $eq: ['$$userRating.deleted', false] },
+            { $eq: ['$$userRating._coinId', '$_id'] }
+          ]}
+        }
+      }
+    }},
+    { $addFields: {
+      'userRating': '$userRating.rating'
+    }}
   ])
 
-  console.log(coins.length);
-  // cb(_userId)
+  cb(coins)
 }
 
 
@@ -73,14 +109,19 @@ module.exports.calculateAndUpdateCoinRating = async (ratingData, isNew) => {
     }
   ])
 
-  let sumProdUiUr = SumProductOfAllUiAndUrOfRatedCoinArray[0].sumProductOfAllUiAndUr
-  let sumUi = SumProductOfAllUiAndUrOfRatedCoinArray[0].sumOfAllUi
+  let sumProdUiUr = 0
+  let sumUi = 0
+
+  if (SumProductOfAllUiAndUrOfRatedCoinArray.length > 0) {
+    sumProdUiUr = SumProductOfAllUiAndUrOfRatedCoinArray[0].sumProductOfAllUiAndUr
+    sumUi = SumProductOfAllUiAndUrOfRatedCoinArray[0].sumOfAllUi
+  }
 
   let ratingAsNumber = helper.calculateRatingAsNumber(sumProdUiUr, sumUi)
   let ratingAsLetter = helper.convertRatingNumberToLetter(ratingAsNumber)
 
   let updatedCoin = await Coin.findOneAndUpdate({ _id: CoinIdToSearch }, { rating: ratingAsLetter })
-  console.log(`Coin (${updatedCoin.name}) rating changed to (${ratingAsLetter})`)
+  // console.log(`Coin (${updatedCoin.name}) rating changed to (${ratingAsLetter})`)
 }
 
 
