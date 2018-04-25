@@ -1,2 +1,6 @@
 @import 'navigation.css';
 @import 'profile.css';
+
+.user {
+  margin-top: 75px;
+}

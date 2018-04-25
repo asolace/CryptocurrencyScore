@@ -29,15 +29,16 @@ class Profile extends Component {
 
     return (
       <div className="user-profile-container">
-        <Form onSubmit={this.handleUsernameSubmit}>
-          <FormGroup>
-            <Label for="username">Username</Label>
+        <Form onSubmit={this.handleUsernameSubmit} inline>
+          <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+            <Label for="username" className="mr-sm-2">Username</Label>
             <Input valid={this.state.updateReponse.success} invalid={this.state.updateReponse.success === false} name="username" id="username" placeholder={user.username} value={this.state.username} onChange={this.handleChange}/>
+            <Button color="success" className="username-update-btn" onClick={this.handleUsernameSubmit}>Update</Button>
             {this.state.updateReponse.message && <FormFeedback valid={this.state.updateReponse.success}>{this.state.updateReponse.message}</FormFeedback>}
           </FormGroup>
-
-          <Button className="right" color="success" size="sm" onClick={this.handleUsernameSubmit}>Update</Button>
         </Form>
+
+        <hr className="my-2" />
 
         <div>
           <Label>Email:</Label>

@@ -12,7 +12,7 @@ class User extends Component {
   render() {
     if (this.props.user) {
       return (
-        <div>
+        <div className="user">
           <Row>
             <Col className="user-nav-container" xs="4">
               <Navigation user={this.props.user}/>

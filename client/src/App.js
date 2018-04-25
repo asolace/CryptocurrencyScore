@@ -12,7 +12,6 @@ import Faq from './components/Faq'
 import Footer from './components/Footer'
 import Home from './components/Home'
 import Navigation from './components/Navigation'
-import Subnav from './components/Subnav'
 import User from './components/User'
 
 import PrivateRoute from './components/PrivateRoute'
@@ -28,7 +27,6 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
           <Navigation />
-          <Subnav />
           <div className="container body">
             <Route exact path="/" component={ Home } />
             <Route exact path="/c/:page" component={ Home } />
