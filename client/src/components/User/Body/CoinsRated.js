@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 import SortSymbol from '../../Templates/SortSymbol'
 import RatingDropdown from '../../Templates/RatingDropdown'
@@ -13,6 +14,10 @@ class CoinsRated extends Component {
     sortAsc: true,
   }
 
+  openRowDropdown = () => {
+    console.log('works');
+  }
+
   renderCoins = () => {
     return this.props.userCoinList
       .sort((a, b) => {
@@ -24,11 +29,13 @@ class CoinsRated extends Component {
         const { name, _id, symbol, logo, userRating, rank } = coin
 
         return (
-          <tr key={i}>
+          <tr key={i} onClick={this.openRowDropdown}>
             <td>{rank}</td>
             <td>
-              <img className="coin-list-logo" src={logo} alt=""/>
-              {` ${name} (${symbol})`}
+              <Link to={`/info/${symbol}`}>
+                <img className="coin-list-logo" src={logo} alt=""/>
+                { ` ${name} (${symbol})` }
+              </Link>
             </td>
             <td>
               <RatingDropdown coinId={_id} rating={userRating} />
