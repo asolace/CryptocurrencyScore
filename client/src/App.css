@@ -65,7 +65,8 @@ label {
 
 /* DISCLAIMER BEGIN */
 .disclaimer-container {
-  margin-top: 20px;
+  margin-top: 75px;
+  padding: 20px;
 }
 
 .disclaimer-content {

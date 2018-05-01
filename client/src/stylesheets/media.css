@@ -25,6 +25,27 @@
     margin-bottom: 20px;
   }
   .user-table-container { flex: none; max-width: none; }
+
+  .faq-header h2,
+  .contact-header h2 { font-size: 20px; }
+  .faq-header h5,
+  .contact-header h5 { font-size: 15px; }
+  .faq-header-container,
+  .contact-header-container { height: 150px; }
+  .faq-header,
+  .contact-header { padding: 15px; }
+
+  .faq,
+  .faq b, 
+  .disclaimer-container,
+  .contact
+  {
+    font-size: 13px;
+  }
+
+  .disclaimer-container h5 { font-size: 15px; }
+  .disclaimer-container h2 { font-size: 17px; }
+
 }
 
 @media (max-width: 550px) {
