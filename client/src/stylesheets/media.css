@@ -58,6 +58,8 @@
 @media (max-width: 500px) {
   .body { padding: 0; }
 
+  .row { margin: 0; }
+
   .list-table thead,
   .list-table tbody { font-size: 10px; }
 
