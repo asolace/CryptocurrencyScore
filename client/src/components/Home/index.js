@@ -49,7 +49,7 @@ class FullList extends Component {
         else return this.state.sortAsc ? a.rank - b.rank : b.rank - a.rank
       })
       .map((coin, i) => {
-        const { _id, rank, logo, name, market_cap_usd, price_usd, percent_change_1h, percent_change_24h, percent_change_7d, symbol, rating } = coin
+        const { _id, rank, logo, name, market_cap_usd, price_usd, percent_change_1h, percent_change_24h, percent_change_7d, symbol, ratingLetter } = coin
         let userRating = 'N'
 
         if (coin.userRating && coin.userRating.length !== 0) {
@@ -59,7 +59,7 @@ class FullList extends Component {
         return (
           <tr className="rating-list-table" key={i}>
             <td>{ rank }</td>
-            <td>{ this.renderRating(rating, _id) }</td>
+            <td>{ this.renderRating(ratingLetter, _id) }</td>
             { this.props.user && <td>{this.renderUsersRating(userRating, _id)}</td> }
 
             {/* NAME */}

@@ -30,7 +30,8 @@ const CoinSchema = mongoose.Schema({
   percent_change_7d: Number,
   last_updated: String,
   ico: Object,
-  rating: { type: String, default: "N" },
+  ratingLetter: { type: String, default: "N" },
+  ratingNumber: { type: Number, default: 0 },
   ratedBy: [{ type: ObjectId, ref: 'User' }]
 })
 
@@ -120,8 +121,7 @@ module.exports.calculateAndUpdateCoinRating = async (ratingData, isNew) => {
   let ratingAsNumber = helper.calculateRatingAsNumber(sumProdUiUr, sumUi)
   let ratingAsLetter = helper.convertRatingNumberToLetter(ratingAsNumber)
 
-  let updatedCoin = await Coin.findOneAndUpdate({ _id: CoinIdToSearch }, { rating: ratingAsLetter })
-  // console.log(`Coin (${updatedCoin.name}) rating changed to (${ratingAsLetter})`)
+  let update = await Coin.findOneAndUpdate({ _id: CoinIdToSearch }, { ratingLetter: ratingAsLetter, ratingNumber: ratingAsNumber })
 }
 
 
