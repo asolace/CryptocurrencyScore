@@ -144,8 +144,8 @@ class FullList extends Component {
 
   render() {
     const { page, sortId, sortAsc, fetching, viewAll } = this.state
-    let devId = '5ad9ebb3a083fc00141d2316'
-    let prodId = '5ad9f0799674903f4fc87604'
+    let devId = '5ae8b658348d930d6f8f4800'
+    let prodId = '5ae8c3441aaaa300147178b8'
 
     return (
       <div className="home">

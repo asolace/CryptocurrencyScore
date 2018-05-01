@@ -59,7 +59,7 @@ module.exports = app => {
   app.post('/api/coin/master-coin-update', (req, res) => {
     const { userId, coinId, coinRatingUpdate } = req.body
 
-    if ((userId === '5ad9ebb3a083fc00141d2316') || (userId === '5ad9f0799674903f4fc87604')) { // Prod - Dev
+    if ((userId === '5ae8c3441aaaa300147178b8') || (userId === '5ae8b658348d930d6f8f4800')) { // Prod - Dev
       let query = { _id: coinId }
 
       Coin.findOne(query).then(data => {
@@ -80,9 +80,9 @@ module.exports = app => {
   app.post('/api/coin/master-reset', (req, res) => {
     const { userId } = req.body
 
-    if ((userId === '5ad9ebb3a083fc00141d2316') || (userId === '5ad9f0799674903f4fc87604')) {
+    if ((userId === '5ae8c3441aaaa300147178b8') || (userId === '5ae8b658348d930d6f8f4800')) {
 
-      Coin.update({}, { rating: 'N' }, { multi: true }, (err, count) => {
+      Coin.update({}, { ratingLetter: 'N' }, { multi: true }, (err, count) => {
         if (err) console.log(err)
         else console.log(count)
       })
