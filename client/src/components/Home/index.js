@@ -151,14 +151,13 @@ class FullList extends Component {
       <div className="home">
         <Announcements />
         <Legend />
-        <Row>
 
 
           {/* MASTER RESET BUTTON */}
           {this.props.user && (this.props.user._id === devId || this.props.user._id === prodId) &&
-          <Col style={{textAlign: "center"}}>
+          
             <Button style={{marginTop: "13px"}} color="danger" size="sm" onClick={this.handleReset}>RESET</Button>
-          </Col>}
+          }
 
 
           {/* GRAPH COLUMN */}
@@ -171,10 +170,7 @@ class FullList extends Component {
             </Col>
           */}
 
-          <Col>
             <Paginate page={page} viewAll={viewAll} />
-          </Col>
-        </Row>
 
 
 
@@ -201,7 +197,7 @@ class FullList extends Component {
               {this.state.viewGraph ?
                 <th>7 day Graph</th> :
                 [
-                  <th key="1h" id="percent_change_1h" className="list-sort" onClick={this.toggleSort}>
+                  <th key="1h" id="percent_change_1h" className="list-1h list-sort" onClick={this.toggleSort}>
                     % 1h <SortSymbol sortId={sortId} sortAsc={sortAsc} divId="percent_change_1h"/>
                   </th>,
                   <th key="24h" id="percent_change_24h" className="list-24h list-sort" onClick={this.toggleSort}>

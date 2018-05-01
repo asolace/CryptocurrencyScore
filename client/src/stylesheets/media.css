@@ -35,6 +35,8 @@
 }
 
 @media (max-width: 500px) {
+  .body { padding: 0; }
+
   .list-table thead,
   .list-table tbody { font-size: 10px; }
 
@@ -47,6 +49,13 @@
   }
 
   .subnav-content a { padding-right: 15px; }
+
+  .gb-sm {
+    font-size: 10px;
+    padding: 5px 8px;
+  }
+
+  .list-1h { display: none; }
 }
 
 @media (max-width: 400px) {
