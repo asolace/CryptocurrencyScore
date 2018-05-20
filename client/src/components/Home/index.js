@@ -14,7 +14,7 @@ import Paginate from './Paginate'
 
 import { Sparklines, SparklinesLine } from 'react-sparklines';
 import axios from 'axios'
-import { Button, Table, Row, Col } from 'reactstrap'
+import { Button, Table } from 'reactstrap'
 
 class FullList extends Component {
   state = {
