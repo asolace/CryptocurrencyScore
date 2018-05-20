@@ -36,7 +36,7 @@ class Navigation extends Component {
               <Link to="/faq">FAQ</Link>
             </NavItem>
 
-            {localStorage.getItem("loggedIn") ?
+            {this.props.user ?
               <ProfileDropdown /> :
               <LoginDropdown />
             }

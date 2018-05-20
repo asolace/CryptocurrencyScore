@@ -5,7 +5,6 @@ export const authenticate = () => async dispatch => {
   const res = await axios.get('/api/auth')
 
   if (res.data) {
-    localStorage.setItem("loggedIn", true)
     dispatch({ type: AUTHENTICATE, payload: true })
   } else {
     dispatch({ type: AUTHENTICATE, payload: false })
