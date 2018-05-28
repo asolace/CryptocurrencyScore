@@ -33,7 +33,7 @@ module.exports = app => {
   // Entire User's data
   app.get('/api/user_data', (req, res) => {
     if (req.user) {
-      User.getUserData(req.user._id, user => {
+      User.getUserDataById(req.user._id, user => {
         res.json(user)
       })
     } else {
@@ -61,4 +61,11 @@ module.exports = app => {
     })
 
   })
+
+  app.get('/api/view', (req, res) => {
+    User.getUserDataByUsername(req.query.username, user => {
+      res.json(user)
+    })
+  })
 }
+

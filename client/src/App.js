@@ -13,6 +13,7 @@ import Footer from './components/Footer'
 import Home from './components/Home'
 import Navigation from './components/Navigation'
 import User from './components/User'
+import UserPublicView from './components/UserPublicView'
 
 import PrivateRoute from './components/PrivateRoute'
 
@@ -32,6 +33,7 @@ class App extends Component {
             <Route exact path="/c/:page" component={ Home } />
             <Route path="/disclaimer" component={ Disclaimer } />
             <Route path="/profile" component={ User } />
+            <Route path="/view/:username" component={ UserPublicView } />
           </div>
           <Route path="/contact" component={ Contact } />
           <Route path="/info/:id" component={ Coin } />

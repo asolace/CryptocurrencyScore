@@ -39,6 +39,7 @@ module.exports.addOrUpdateUserRating = async (coinId, userId, coinRatingUpdate, 
       const add = { $addToSet: { ratedCoins: ratingData }}
       User.update({ _id: userId, 'ratedCoins._coinId': { $ne: coinId }}, add, { upsert: true }, (err, user) => {
         if (err) console.log(`Error in pushing user rating coin: ${err}`)
+        
         Coin.addUserToCoinRatedByArray(ratingData, userId, cb)
       })
     } else { // Updates Data
@@ -60,7 +61,7 @@ module.exports.addOrUpdateUserRating = async (coinId, userId, coinRatingUpdate, 
   })
 }
 
-module.exports.getUserData = async (_id, cb) => {
+module.exports.getUserDataById = async (_id, cb) => {
   UserIdToSearch = mongoose.Types.ObjectId(_id)
 
   const result = await User.aggregate([
@@ -77,6 +78,27 @@ module.exports.getUserData = async (_id, cb) => {
   ])
 
   cb(result[0])
+}
+
+module.exports.getUserDataByUsername = async (username, cb) => {
+  try {
+    const result = await User.aggregate([
+      { $match: { username }},
+      { $addFields: {
+        'ratedCoins': {
+          $filter: {
+            input: '$ratedCoins',
+            as: 'ratedCoins',
+            cond: { $eq: ['$$ratedCoins.deleted', false]}
+          }
+        }
+      }}
+    ])
+  
+    cb(result[0])
+  } catch (e) {
+    console.log(e)
+  }
 }
 
 module.exports.getUserRatingList = async (_id, cb) => {
