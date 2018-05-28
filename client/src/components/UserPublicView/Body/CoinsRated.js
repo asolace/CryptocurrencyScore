@@ -24,7 +24,7 @@ class CoinsRated extends Component {
         else return this.state.sortAsc ? a.rank - b.rank : b.rank - a.rank
       })
       .map((coin, i) => {
-        const { name, _id, symbol, logo, userRating, rank } = coin
+        const { name, symbol, logo, userRating, rank } = coin
 
         return (
           <tr key={i} onClick={this.openRowDropdown}>
