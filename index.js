@@ -8,7 +8,11 @@ const keys = require('./config/keys')
 require('./config/passport')
 require('./services/coinUpdate')
 
-mongoose.connect(keys.mongoURI)
+mongoose.connect(keys.mongoURI, { 
+  useNewUrlParser: true, 
+  useCreateIndex: true,
+  useFindAndModify: false
+})
   .catch(err => console.log(err))
 
 app.use(bodyParser.json())

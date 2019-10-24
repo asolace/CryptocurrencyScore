@@ -1,6 +1,6 @@
 const passport = require('passport')
 const GoogleStrategy = require('passport-google-oauth20').Strategy
-const CoinbaseStrategy = require('passport-coinbase').Strategy
+// const CoinbaseStrategy = require('passport-coinbase').Strategy
 const mongoose = require('mongoose')
 const keys = require('./keys')
 
@@ -40,13 +40,13 @@ passport.use(new GoogleStrategy({
   }
 ))
 
-passport.use(new CoinbaseStrategy({
-    clientID: keys.coinbaseClientID,
-    clientSecret: keys.coinbaseClientSecret,
-    callbackURL: '/auth/coinbase/callback',
-    proxy: true
-  },
-  async (accessToken, refreshToken, profile, done) => {
-    console.log(profile)
-  }
-))
+// passport.use(new CoinbaseStrategy({
+//     clientID: keys.coinbaseClientID,
+//     clientSecret: keys.coinbaseClientSecret,
+//     callbackURL: '/auth/coinbase/callback',
+//     proxy: true
+//   },
+//   async (accessToken, refreshToken, profile, done) => {
+//     console.log(profile)
+//   }
+// ))

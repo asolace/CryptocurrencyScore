@@ -34,7 +34,7 @@ class Repo extends Component {
                     </thead>
                     <tbody>
                       <tr>
-                        <td><a href={list.url} target="_blank">Link</a></td>
+                        <td><a href={list.url} target="_blank" rel="noopener noreferrer">Link</a></td>
                         <td>{list.language}</td>
                         <td>{list.stars}</td>
                         <td>{list.subscribers}</td>

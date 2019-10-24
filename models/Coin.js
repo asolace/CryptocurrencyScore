@@ -8,27 +8,27 @@ const CoinSchema = mongoose.Schema({
   name: String,
   symbol: { type: String, unique: true },
   rank: Number,
-  url: String,
+  url: String, // Need
   logo: String,
   algorithm: String,
   proofOfType: String,
-  description: String,
-  features: String,
-  technology: String,
-  twitter: Object,
-  reddit: Object,
-  facebook: Object,
-  repo: Object,
-  price_usd: Number,
-  price_btc: Number,
-  market_cap_usd: Number,
-  available_supply: Number,
-  total_supply: Number,
-  max_supply: Number,
-  percent_change_1h: Number,
-  percent_change_24h: Number,
-  percent_change_7d: Number,
-  last_updated: String,
+  description: String, // Need
+  features: String, // Need
+  technology: String, // Need
+  twitter: Object, // Need
+  reddit: Object, // Need
+  facebook: Object, // Need
+  repo: Object, // Need
+  price_usd: Number, // Need
+  price_btc: Number, // Need
+  market_cap_usd: Number, // Need
+  available_supply: Number, // Need
+  total_supply: Number, 
+  max_supply: Number, // Need
+  percent_change_1h: Number, // Need
+  percent_change_24h: Number, // Need
+  percent_change_7d: Number, // Need
+  last_updated: String, 
   ico: Object,
   ratingLetter: { type: String, default: "N" },
   ratingNumber: { type: Number, default: 0 },

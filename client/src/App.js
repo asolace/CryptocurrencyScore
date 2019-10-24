@@ -16,7 +16,7 @@ import Subnav from './components/Subnav'
 import User from './components/User'
 import UserPublicView from './components/UserPublicView'
 
-import PrivateRoute from './components/PrivateRoute'
+// import PrivateRoute from './components/PrivateRoute'
 
 class App extends Component {
   componentDidMount() {
