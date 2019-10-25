@@ -73,5 +73,5 @@ let getCoinInfo = async () => {
   }
 }
 
-// getCoinMap()
-// getCoinInfo()
+getCoinMap()
+getCoinInfo()
