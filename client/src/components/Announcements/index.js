@@ -16,17 +16,17 @@ class Announcements extends Component {
   render() {
     return (
       <div className="announcements">
-      {/*  <Alert color="danger">
+        <Alert color="danger">
           <span className="announcement-header">Important!</span>
           <ul className="announcements-container">
-            <li>While under development coin ratings are currently bias and holds no weight!</li>
+            <li>While under development coin ratings are currently bias and holds no weight.</li>
+            <li>While under development coin data may not be updated.</li>
           </ul>
-        </Alert>*/}
+        </Alert>
 
         <Alert color="warning" isOpen={this.state.warning} toggle={this.warningDismiss}>
           <span className="announcement-header">Coins to strongly avoid!</span>
           <ul className="announcements-container">
-            <li>Tether (USDT)</li>
             <li>Bitconnect (BCC)</li>
           </ul>
         </Alert>
