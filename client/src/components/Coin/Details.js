@@ -131,8 +131,8 @@ class Details extends Component {
                     </thead>
                     <tbody>
                       <tr>
-                        <td><a href={helper.renderWebUrl(general.AffiliatedUrl)} target="_blank">{general.Name}</a></td>
-                        {ico.Status !== 'N/A' && <td><a href={ico.WhitePaperLink} target="_blank">Link</a></td>}
+                        <td><a href={helper.renderWebUrl(general.AffiliatedUrl)} target="_blank" rel="noopener noreferrer">{general.Name}</a></td>
+                        {ico.Status !== 'N/A' && <td><a href={ico.WhitePaperLink} target="_blank" rel="noopener noreferrer">Link</a></td>}
                         <td>{helper.isNA(general.StartDate)}</td>
                         <td>{helper.isNA(general.Algorithm)}</td>
                         <td>{general.TotalCoinsMined + ' / ' + helper.isNA(general.TotalCoinSupply)}</td>
@@ -153,7 +153,7 @@ class Details extends Component {
                     </thead>
                     <tbody>
                       <tr>
-                        <td><a href={facebook.link} target="_blank">Facebook</a></td>
+                        <td><a href={facebook.link} target="_blank" rel="noopener noreferrer">Facebook</a></td>
                         <td>{facebook.Points}</td>
                         <td>{facebook.likes}</td>
                         <td>{facebook.talking_about}</td>
@@ -173,7 +173,7 @@ class Details extends Component {
                     </thead>
                     <tbody>
                       <tr>
-                        <td><a href={reddit.link} target="_blank">Reddit</a></td>
+                        <td><a href={reddit.link} target="_blank" rel="noopener noreferrer">Reddit</a></td>
                         <td>{reddit.Points}</td>
                         <td>{reddit.active_users}</td>
                         <td>{reddit.subscribers}</td>

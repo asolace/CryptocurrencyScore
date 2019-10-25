@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+const cors = require('cors')
 const mongoose = require('mongoose')
 const cookieSession = require('cookie-session')
 const passport = require('passport')
@@ -15,6 +16,7 @@ mongoose.connect(keys.mongoURI, {
 })
   .catch(err => console.log(err))
 
+app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
@@ -43,7 +45,7 @@ if (process.env.NODE_ENV === 'production') {
   })
 }
 
-const PORT = process.env.PORT || 3003
+const PORT = process.env.PORT || 3002
 
 app.listen(PORT, () => {
   console.log(`
