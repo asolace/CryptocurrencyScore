@@ -10,7 +10,8 @@
   padding: 0 15px;
 }
 
-.right-footer a {
+.right-footer .donate {
   color: var(--link-color) !important;
   cursor: pointer;
+  border: none;
 }

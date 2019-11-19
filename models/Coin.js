@@ -19,15 +19,15 @@ const CoinSchema = mongoose.Schema({
   reddit: Object, // Need
   facebook: Object, // Need
   repo: Object, // Need
-  price_usd: Number, // Need
-  price_btc: Number, // Need
-  market_cap_usd: Number, // Need
-  available_supply: Number, // Need
+  price_usd: Number,
+  price_btc: Number,
+  market_cap_usd: Number,
+  available_supply: Number,
   total_supply: Number, 
-  max_supply: Number, // Need
-  percent_change_1h: Number, // Need
-  percent_change_24h: Number, // Need
-  percent_change_7d: Number, // Need
+  max_supply: Number,
+  percent_change_1h: Number,
+  percent_change_24h: Number,
+  percent_change_7d: Number,
   last_updated: String, 
   ico: Object,
   ratingLetter: { type: String, default: "N" },

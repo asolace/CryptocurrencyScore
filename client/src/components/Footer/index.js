@@ -18,14 +18,18 @@ class Footer extends Component {
     value: ''
   }
 
-  btcToggle = () => {
+  btcToggle = e => {
+    e.preventDefault()
+
     this.setState({
       btcModal: !this.state.btcModal,
       value: '1Hpt4hnSYsePr8iyiqckLmTgJGcu2ejgmh'
     })
   }
 
-  ethToggle = () => {
+  ethToggle = e => {
+    e.preventDefault()
+
     this.setState({
       ethModal: !this.state.ethModal,
       value: '0x5C5c8318cD6975D22a8b67d8aA1552eB3e8d8d04'
@@ -49,8 +53,8 @@ class Footer extends Component {
             </Col>
             <Col>
               <div className="right-footer">
-                <Row>Donate BTC: &nbsp;<a href="javascript(void);" onClick={this.btcToggle}> 1Hpt4hnSYsePr8iyiqckLmTgJGcu2ejgmh </a></Row>
-                <Row>Donate ETH: &nbsp;<a href="javascript(void);" onClick={this.ethToggle}> 0x5C5c8318cD6975D22a8b67d8aA1552eB3e8d8d04 </a></Row>
+                <Row>Donate BTC: &nbsp;<button className="donate" onClick={this.btcToggle}> 1Hpt4hnSYsePr8iyiqckLmTgJGcu2ejgmh </button></Row>
+                <Row>Donate ETH: &nbsp;<button className="donate" onClick={this.ethToggle}> 0x5C5c8318cD6975D22a8b67d8aA1552eB3e8d8d04 </button></Row>
               </div>
             </Col>
           </Row>
