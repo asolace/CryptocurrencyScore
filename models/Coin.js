@@ -154,7 +154,6 @@ module.exports.addOrUpdateCoin = coinData => {
     } else {
       Coin.findOneAndUpdate(query, coinData, (err, coin) => {
         if (err) console.log(`Update Error: ${err}`)
-        else console.log(`${coinData.symbol} Updated!`)
       })
     }
   })
@@ -170,7 +169,6 @@ module.exports.updateSocialCoin = coinData => {
     } else {
       Coin.findOneAndUpdate(query, coinData, (err, coin) => {
         if (err) console.log('Social Update Error: ' + err)
-        else console.log(`id: ${coin.id} Social Updated!`)
       })
     }
   })

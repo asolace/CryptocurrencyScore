@@ -12,7 +12,8 @@ require('./services/coinUpdate')
 mongoose.connect(keys.mongoURI, { 
   useNewUrlParser: true, 
   useCreateIndex: true,
-  useFindAndModify: false
+  useFindAndModify: false,
+  useUnifiedTopology: true
 })
   .catch(err => console.log(err))
 
