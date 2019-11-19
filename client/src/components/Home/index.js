@@ -155,7 +155,6 @@ class FullList extends Component {
 
           {/* MASTER RESET BUTTON */}
           {this.props.user && (this.props.user._id === devId || this.props.user._id === prodId) &&
-          
             <Button style={{marginTop: "13px"}} color="danger" size="sm" onClick={this.handleReset}>RESET</Button>
           }
 

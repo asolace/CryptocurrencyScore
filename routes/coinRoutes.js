@@ -1,6 +1,6 @@
 const Coin = require('../models/Coin')
 const axios = require('axios')
-const keys = require('../config/keys')
+const requireAdmin = require('../middlewares/requireAdmin')
 
 module.exports = app => {
   app.get('/api/coin/list/:page', (req, res) => {
@@ -56,39 +56,32 @@ module.exports = app => {
     res.json({ data })
   })
 
-  app.post('/api/coin/master-coin-update', (req, res) => {
-    const { userId, coinId, coinRatingUpdate } = req.body
+  app.post('/api/coin/master-coin-update', requireAdmin, (req, res) => {
+    const { coinId, coinRatingUpdate } = req.body
+    let query = { _id: coinId }
 
-    if ((userId === '5ae8c3441aaaa300147178b8') || (userId === '5ae8b658348d930d6f8f4800')) { // Prod - Dev
-      let query = { _id: coinId }
-
-      Coin.findOne(query).then(data => {
-        if (data === null) {
-          res.send(`Coin id: ${coinId} does not exsist.`)
-        } else {
-          Coin.findOneAndUpdate(query, { rating: coinRatingUpdate }, () => {
-            res.send(`${coinId} Successfully Updated`)
-          })
-        }
+    Coin.findOne(query).then(data => {
+      if (data === null) {
+        res.send(`Coin id: ${coinId} does not exsist.`)
+      } else {
+        Coin.findOneAndUpdate(query, { rating: coinRatingUpdate }, () => {
+          res.send(`${coinId} Successfully Updated`)
+        })
+      }
       })
-
-    } else {
-      res.send('Not authorized')
-    }
   })
 
-  app.post('/api/coin/master-reset', (req, res) => {
-    const { userId } = req.body
+  app.post('/api/coin/master-reset', requireAdmin, async (req, res) => {
+    let message = await Coin.updateMany({}, { $set: { ratingLetter: 'N' }})
 
-    if ((userId === '5ae8c3441aaaa300147178b8') || (userId === '5ae8b658348d930d6f8f4800')) {
-
-      Coin.update({}, { ratingLetter: 'N' }, { multi: true }, (err, count) => {
-        if (err) console.log(err)
-        else console.log(count)
+    try {
+      res.send({
+        status: 200,
+        message: "All coin ratings reseted.",
+        obj: message
       })
-
-    } else {
-      res.send(userId, ' Not authorized')
+    } catch (err) {
+      res.status(422).send(err)
     }
   })
 }

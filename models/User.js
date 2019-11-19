@@ -11,7 +11,8 @@ const UserSchema = mongoose.Schema({
   googlePhotos: String,
   ratedCoins: [ UserRatingSchema ],
   influenceRating: { type: Number, default: 1 },
-  joinDate: Date
+  joinDate: Date,
+  tea: { type: Boolean, default: false }
 })
 
 const User = module.exports = mongoose.model('User', UserSchema)
