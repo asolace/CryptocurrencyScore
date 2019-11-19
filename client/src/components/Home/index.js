@@ -91,12 +91,10 @@ class FullList extends Component {
   }
 
   renderRating = (rating, id) => {
-    let user = this.props.user ? this.props.user._id : ''
-    let devId = '5ad9ebb3a083fc00141d2316'
-    let prodId = '5ad9f0799674903f4fc87604'
+    const { user } = this.props
 
     return (
-      (user === devId || user === prodId) ?
+      (user.tea) ?
       <RatingDropdown rating={rating} coinId={id}/> :
       <span className={`grade-box ${helpers.renderRatingBox(rating)}`}>
         {rating}
@@ -144,8 +142,7 @@ class FullList extends Component {
 
   render() {
     const { page, sortId, sortAsc, fetching, viewAll } = this.state
-    let devId = '5ae8b658348d930d6f8f4800'
-    let prodId = '5ae8c3441aaaa300147178b8'
+    const { user } = this.props
 
     return (
       <div className="home">
@@ -153,23 +150,23 @@ class FullList extends Component {
         <Legend />
 
 
-          {/* MASTER RESET BUTTON */}
-          {this.props.user && (this.props.user._id === devId || this.props.user._id === prodId) &&
-            <Button style={{marginTop: "13px"}} color="danger" size="sm" onClick={this.handleReset}>RESET</Button>
-          }
+        {/* MASTER RESET BUTTON */}
+        {user && user.tea &&
+          <Button style={{marginTop: "13px"}} color="danger" size="sm" onClick={this.handleReset}>RESET</Button>
+        }
 
 
-          {/* GRAPH COLUMN */}
-          {/*!viewAll &&
-            <Col style={{textAlign: "center"}}>
-              {!viewGraph ?
-                <Button style={{marginTop: "13px"}} outline size="sm" onClick={this.toggleGraphPercentView}>Graph View</Button> :
-                <Button style={{marginTop: "13px"}} outline size="sm" onClick={this.toggleGraphPercentView}>Percent View</Button>
-              }
-            </Col>
-          */}
+        {/* GRAPH COLUMN */}
+        {/*!viewAll &&
+          <Col style={{textAlign: "center"}}>
+            {!viewGraph ?
+              <Button style={{marginTop: "13px"}} outline size="sm" onClick={this.toggleGraphPercentView}>Graph View</Button> :
+              <Button style={{marginTop: "13px"}} outline size="sm" onClick={this.toggleGraphPercentView}>Percent View</Button>
+            }
+          </Col>
+        */}
 
-            <Paginate page={page} viewAll={viewAll} />
+        <Paginate page={page} viewAll={viewAll} />
 
 
 
