@@ -63,7 +63,7 @@ module.exports = {
       let cent = string.split('.')[1]
       let parseDollar = dollar.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
 
-      return `$${parseDollar}.${cent}`
+      return `$${parseDollar}.${cent[0]}${cent[1]||"0"}`
     } else {
       return `$${string.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`
     }

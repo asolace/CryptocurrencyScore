@@ -55,7 +55,7 @@ let getCoinLatest = async () => {
         total_supply: data.total_supply,
         max_supply: data.max_supply,
         price_usd: data.quote.USD.price,
-        market_cap_usd: data.quote.USD.price,
+        market_cap_usd: data.quote.USD.market_cap,
         percent_change_1h: data.quote.USD.percent_change_1h,
         percent_change_24h: data.quote.USD.percent_change_24h,
         percent_change_7d: data.quote.USD.percent_change_7d,
