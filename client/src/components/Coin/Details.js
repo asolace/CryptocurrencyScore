@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios'
 import helper from '../../helpers'
 import Loading from '../Loading'
 
@@ -11,10 +10,12 @@ import Repo from './Repo'
 class Details extends Component {
   state = {
     activeTab: '1',
-    general: {},
-    ico: {},
-    seo: {},
-    repos: {},
+    name: "",
+    url: "",
+    algorithm: "",
+    description: "",
+    techDoc: "",
+    repo: [],
     facebook: {},
     twitter: {},
     reddit: {},
@@ -22,24 +23,20 @@ class Details extends Component {
   }
 
   async componentDidUpdate(prevProps, prevState) {
+    const { coin } = this.props
     if (prevProps.coin !== this.props.coin) {
-      try {
-        let res = await axios.get('/api/coin/detail/' + this.props.coin.ccId)
-        let { details, social } = res.data.data
-
-        this.setState({
-          general: details.General,
-          ico: details.ICO,
-          seo: details.SEO,
-          repos: social.CodeRepository,
-          facebook: social.Facebook,
-          twitter: social.Twitter,
-          reddit: social.Reddit,
-          fetching: false
-         })
-      } catch (e) {
-        console.log(e)
-      }
+      this.setState({
+        name: coin.name,
+        url: coin.url,
+        algorithm: coin.algorithm,
+        description: coin.description,
+        techDoc: coin.technicalDoc[0],
+        repo: coin.repo,
+        facebook: coin.facebook,
+        twitter: coin.twitter,
+        reddit: coin.reddit,
+        fetching: false
+        })
     }
   }
 
@@ -58,7 +55,7 @@ class Details extends Component {
   }
 
   mappedReposLists = () => {
-    return this.state.repos.List.map((list, i) => {
+    return this.state.repo.List.map((list, i) => {
       return (
         <div key={i}>
           <Repo list={list} />
@@ -68,7 +65,7 @@ class Details extends Component {
   }
 
   render() {
-    const { general, ico, facebook, twitter, reddit, fetching } = this.state
+    const { name, url, algorithm, description, techDoc, facebook, twitter, reddit, fetching } = this.state
 
     return (
       <div className="details-container">
@@ -91,22 +88,10 @@ class Details extends Component {
               </NavLink>
             </NavItem>
 
-            {ico.Status !== 'N/A' &&
-              <NavItem>
-                <NavLink
-                  className={classnames({ active: this.state.activeTab === '3' })}
-                  onClick={() => { this.toggle('3'); }}
-                >
-                  ICO
-                </NavLink>
-              </NavItem>
-            }
-
-
             <NavItem>
               <NavLink
-                className={classnames({ active: this.state.activeTab === '4' })}
-                onClick={() => { this.toggle('4'); }}
+                className={classnames({ active: this.state.activeTab === '3' })}
+                onClick={() => { this.toggle('3'); }}
               >
                 Repo
               </NavLink>
@@ -122,21 +107,15 @@ class Details extends Component {
                     <thead>
                       <tr>
                         <th>Website</th>
-                        {ico.Status !== 'N/A' && <th>White Paper</th>}
-                        <th>Start Date</th>
+                        <th>Technical Doc</th>
                         <th>Algorithm</th>
-                        <th>Coins Mined</th>
-                        <th>Proof of Type</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
-                        <td><a href={helper.renderWebUrl(general.AffiliatedUrl)} target="_blank" rel="noopener noreferrer">{general.Name}</a></td>
-                        {ico.Status !== 'N/A' && <td><a href={ico.WhitePaperLink} target="_blank" rel="noopener noreferrer">Link</a></td>}
-                        <td>{helper.isNA(general.StartDate)}</td>
-                        <td>{helper.isNA(general.Algorithm)}</td>
-                        <td>{general.TotalCoinsMined + ' / ' + helper.isNA(general.TotalCoinSupply)}</td>
-                        <td>{helper.isNA(general.ProofType)}</td>
+                        <td><a href={url} target="_blank" rel="noopener noreferrer">{name}</a></td>
+                        <td><a href={techDoc} target="_blank" rel="noopener noreferrer">Link</a></td>
+                        <td>{helper.isNA(algorithm)}</td>
                       </tr>
                     </tbody>
                   </Table>
@@ -198,7 +177,7 @@ class Details extends Component {
                   </Table>
 
                   <h5>Description</h5>
-                  <p>{this.paragraphParse(general.Description)}</p>
+                  <p>{this.paragraphParse(description)}</p>
                 </Col>
               </Row>
             </TabPane>
@@ -212,7 +191,7 @@ class Details extends Component {
                     <p><span>Points: </span> {twitter.Points}</p>
                     <p><span>Weblink: </span><a href={twitter.link}> {twitter.link}</a></p>
                     <p><span>Account Creation: </span> {twitter.account_creation}</p>
-                    <p><span>Faavourites: </span> {twitter.favourites}</p>
+                    <p><span>Favorites: </span> {twitter.favourites}</p>
                     <p><span>Followers: </span> {twitter.follwers}</p>
                     <p><span>Following: </span> {twitter.following}</p>
                     <p><span>Lists: </span> {twitter.lists}</p>
@@ -231,87 +210,6 @@ class Details extends Component {
 
 
             <TabPane tabId="3">
-              {/* ICO */}
-              <Row>
-                <Col sm="12">
-                <Table bordered>
-                  <thead>
-                    <tr>
-                      <th>Status</th>
-                      <th>Blog</th>
-                      <th>Date</th>
-                      <th>End Date</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>{ico.Status}</td>
-                      <td><a href={ico.BlockLink}>Blog</a></td>
-                      <td>{helper.utcToDate(ico.Date)}</td>
-                      <td>{helper.utcToDate(ico.EndDate)}</td>
-                    </tr>
-                  </tbody>
-                  <thead>
-                    <tr>
-                      <th>Funding Cap</th>
-                      <th>Funding Target</th>
-                      <th>Funding Raised</th>
-                      <th>Funding Raised USD</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>{ico.FundingCap}</td>
-                      <td>{ico.FundingTarget}</td>
-                      <td>{ico.FundsRaised}</td>
-                      <td>{helper.stringToUSD(ico.FundsRaisedUSD)}</td>
-                    </tr>
-                  </tbody>
-                  <thead>
-                    <tr>
-                      <th>Starting Price</th>
-                      <th>Starting Currency</th>
-                      <th>Token for Investors</th>
-                      <th>Reserve Splits</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>{ico.StartPrice}</td>
-                      <td>{ico.StartPriceCurrency}</td>
-                      <td>{ico.TokenPercentageForInvestors} %</td>
-                      <td>{ico.TokenReserveSplit}</td>
-                    </tr>
-                  </tbody>
-                  <thead>
-                    <tr>
-                      <th>Jurisdiction</th>
-                      <th>Legal Advisers</th>
-                      <th>LegalForm</th>
-                      <th>Security Audit</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>{ico.Jurisdiction}</td>
-                      <td>{ico.LegalAdvisers}</td>
-                      <td>{ico.LegalForm}</td>
-                      <td>{ico.SecurityAuditCompany}</td>
-                    </tr>
-                  </tbody>
-                </Table>
-
-                <h5>Description</h5>
-                <p>{this.paragraphParse(ico.Description)}</p>
-                </Col>
-              </Row>
-            </TabPane>
-
-
-
-
-
-            <TabPane tabId="4">
               {/* REPO */}
               <Row>
                 <Col sm="12">

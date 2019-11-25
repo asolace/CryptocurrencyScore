@@ -94,7 +94,7 @@ class FullList extends Component {
     const { user } = this.props
 
     return (
-      (user.tea) ?
+      (user && user.tea) ?
       <RatingDropdown rating={rating} coinId={id}/> :
       <span className={`grade-box ${helpers.renderRatingBox(rating)}`}>
         {rating}
@@ -138,6 +138,9 @@ class FullList extends Component {
     axios.post('/api/coin/master-reset', { userId: this.props.user._id })
   }
 
+  handleUpdateCoin = () => {
+    axios.post('/api/coin/update-all', { userId: this.props.user._id })
+  }
 
 
   render() {
@@ -150,9 +153,12 @@ class FullList extends Component {
         <Legend />
 
 
-        {/* MASTER RESET BUTTON */}
+        {/* MASTER BUTTONS */}
         {user && user.tea &&
-          <Button style={{marginTop: "13px"}} color="danger" size="sm" onClick={this.handleReset}>RESET</Button>
+          <React.Fragment>
+            <Button style={{marginTop: "13px"}} color="danger" size="sm" onClick={this.handleReset}>RESET</Button>
+            <Button style={{marginLeft: "10px", marginTop: "13px"}} color="info" size="sm" onClick={this.handleUpdateCoin}>UPDATE</Button>
+          </React.Fragment>
         }
 
 

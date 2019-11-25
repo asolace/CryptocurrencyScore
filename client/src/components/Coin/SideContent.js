@@ -43,9 +43,12 @@ const SideContent = ({ coin }) =>
 
       <hr />
 
-
-      <h5>Max Supply</h5>
-      <p>{helper.stringToUSD(coin.max_supply)} <span className="color-lg">usd</span></p>
+      {coin.max_supply !== null && 
+        <React.Fragment>
+          <h5>Max Supply</h5>
+          <p>{helper.stringToUSD(coin.max_supply)} <span className="color-lg">usd</span></p>
+        </React.Fragment>
+      }
     </Card>
   </div>
 

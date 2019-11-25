@@ -4,21 +4,24 @@ const ObjectId = mongoose.Schema.ObjectId
 const helper = require('../helper')
 
 const CoinSchema = mongoose.Schema({
-  ccId: Number,
+  ccId: { type: Number, unique: true },
   name: String,
   symbol: { type: String, unique: true },
   rank: Number,
-  url: String, // Need
+  url: String,
   logo: String,
   algorithm: String,
   proofOfType: String,
-  description: String, // Need
-  features: String, // Need
-  technology: String, // Need
-  twitter: Object, // Need
-  reddit: Object, // Need
-  facebook: Object, // Need
-  repo: Object, // Need
+  description: String,
+  features: String,
+  technology: String,
+  twitter: Object,
+  reddit: Object,
+  facebook: Object,
+  repo: Object, 
+  technicalDoc: Object,
+  chat: Object,
+  hasMeta: { type: Boolean, default: false },
   price_usd: Number,
   price_btc: Number,
   market_cap_usd: Number,
@@ -147,29 +150,21 @@ module.exports.addUserToCoinRatedByArray = (ratingData, userId, cb) => {
 module.exports.addOrUpdateCoin = coinData => {
   const query = { symbol: coinData.symbol }
 
-  Coin.findOne(query).then(data => {
-    if (data === null) {
-      let newCoin = new Coin(coinData)
-      newCoin.save(() => console.log(`${coinData.symbol} Saved!`))
-    } else {
-      Coin.findOneAndUpdate(query, coinData, (err, coin) => {
-        if (err) console.log(`Update Error: ${err}`)
-      })
-    }
+  Coin.updateOne(query, coinData, { upsert: true, setDefaultsOnInsert: true }, (err, coin) => {
+    if (err) console.log(`Update Error: ${err}`)
   })
 }
 
 // Updates Coin Social Data from API
-module.exports.updateSocialCoin = coinData => {
+module.exports.updateMetaCoin = async coinData => {
   const query = { ccId: coinData.ccId }
 
-  Coin.findOne(query).then(data => {
-    if (data === null) {
-      console.log(`Coin id: ${coinData.ccId} doesn't exsist.`)
-    } else {
-      Coin.findOneAndUpdate(query, coinData, (err, coin) => {
-        if (err) console.log('Social Update Error: ' + err)
-      })
-    }
-  })
+  try {
+    let coin = await Coin.findOneAndUpdate(query, coinData, { new: true })
+
+    return coin
+  } catch (e) {
+    console.log(e)
+    return null
+  }
 }

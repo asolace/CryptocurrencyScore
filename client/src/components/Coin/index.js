@@ -13,33 +13,50 @@ class Coin extends Component {
     coin: {}
   }
 
+  // async componentDidMount() {
+  //   const symbol = this.props.match.params.id
+  //   let res = await axios.get('/api/coin/info?symbol=' + symbol)
+
+  //   this.setState({
+  //     coin: res.data.coin
+  //    })
+  // }
+
   async componentDidMount() {
     const symbol = this.props.match.params.id
-    let res = await axios.get('/api/coin/info?symbol=' + symbol)
 
-    this.setState({
-      coin: res.data.coin
-     })
+      try {
+        let res = await axios.get('/api/coin/detail/' + symbol)
+        this.setState({
+          coin: res.data.coin
+        })
+      } catch (e) {
+        console.log(e)
+      }
   }
 
   render() {
     const { coin } = this.state
-
+    
     return (
       <div className="coin-container">
-        <Header coin={coin}/>
+        {coin &&
+          <React.Fragment>
+            <Header coin={coin}/>
 
-        <div className="coin-body">
-          <Row>
-            <Col sm="3">
-              <SideContent coin={coin} />
-            </Col>
-            <Col sm="9">
-              <CoinGraph coin={coin}/>
-            </Col>
-          </Row>
-          <Details coin={coin} />
-        </div>
+            <div className="coin-body">
+              <Row>
+                <Col sm="3">
+                  <SideContent coin={coin} />
+                </Col>
+                <Col sm="9">
+                  <CoinGraph coin={coin}/>
+                </Col>
+              </Row>
+              <Details coin={coin} />
+            </div>
+          </React.Fragment>
+        }
       </div>
     )
   }

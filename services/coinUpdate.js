@@ -1,6 +1,4 @@
 const axios = require('axios')
-const i2b = require("imageurl-base64")
-const helper = require('../helper')
 const Coin = require('../models/Coin')
 const keys = require('../config/keys')
 
@@ -8,7 +6,7 @@ const CoinMarketCapURL = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency'
 const CryptoCompareURL = 'https://min-api.cryptocompare.com/data/all/coinlist'
 
 let getCoinMap = async () => {
-  console.log("STARTING -- getting coin MAP from CoinMarketCap API...")
+  console.log("STARTING -- Getting coin MAP from CoinMarketCap API...")
   
   try {
     let res = await axios.get(CoinMarketCapURL + '/map', {
@@ -32,13 +30,13 @@ let getCoinMap = async () => {
       console.log('ERROR -- Getting coin MAP from CoinMarketCap error... ', e)
     }
   } finally {
-    console.log("COMPLETED -- getting coin MAP from CoinMarketCap API.")
+    console.log("COMPLETED -- Getting coin MAP from CoinMarketCap API.")
   }
 }
 
 
 let getCoinLatest = async () => {
-  console.log("Getting coin META from CoinMarketCap API...")
+  console.log("STARTING -- Getting coin META from CoinMarketCap API...")
 
   try {
     let res = await axios.get(CoinMarketCapURL + '/listings/latest', {
@@ -47,8 +45,12 @@ let getCoinLatest = async () => {
 
     let dataArray = res.data.data
     dataArray.forEach(async data => {
+      let btcPrice = data.quote.BTC !== undefined ? data.quote.BTC.price : 0
+
       let coinData = {
         symbol: data.symbol,
+        name: data.name,
+        rank: data.cmc_rank,
         available_supply: data.circulating_supply,
         total_supply: data.total_supply,
         max_supply: data.max_supply,
@@ -58,7 +60,7 @@ let getCoinLatest = async () => {
         percent_change_24h: data.quote.USD.percent_change_24h,
         percent_change_7d: data.quote.USD.percent_change_7d,
         last_updated: data.quote.USD.last_updated,
-        price_btc: data.quote.BTC.price
+        price_btc: btcPrice
       }
 
       Coin.addOrUpdateCoin(coinData)
@@ -70,13 +72,13 @@ let getCoinLatest = async () => {
       console.log('ERROR -- Getting coin LATEST from CoinMarketCap error... ', e)
     }
   } finally {
-    console.log("COMPLETED -- getting coin LATEST from CoinMarketCap API.")
+    console.log("COMPLETED -- Getting coin LATEST from CoinMarketCap API.")
   }
 }
 
 
 let getCoinInfo = async () => {
-  console.log("STARTING -- getting coin INFO from CryptoCompare API...")
+  console.log("STARTING -- Getting coin INFO from CryptoCompare API...")
 
   try {
     let res = await axios.get(CryptoCompareURL, {
@@ -86,15 +88,8 @@ let getCoinInfo = async () => {
     let dataObjs = res.data.Data
     let BaseURL = res.data.BaseImageUrl
     for (let symbol in dataObjs) {
-      let Rank = 0
-      
-      if (dataObjs[symbol].SortOrder !== null && dataObjs[symbol].SortOrder !== undefined && dataObjs[symbol].TotalCoinSupply !== "N/A") {        
-        Rank = Number.parseInt((dataObjs[symbol].SortOrder).replace(/,/g, ''))
-      }
-
       let coinData = {
         symbol: dataObjs[symbol].Name,
-        rank: Rank,
         logo: BaseURL + dataObjs[symbol].ImageUrl,
         algorithm: dataObjs[symbol].Algorithm,
         proofOfType: dataObjs[symbol].ProofType
@@ -108,12 +103,12 @@ let getCoinInfo = async () => {
       console.log('ERROR -- Getting coin INFO from CryptoCompare error... ', e)
     }
   } finally {
-    console.log("COMPLETED -- getting coin INFO from CryptoCompare API.")
+    console.log("COMPLETED -- Getting coin INFO from CryptoCompare API.")
   }
 }
 
 
-let updateData = () => {
+module.exports.updateData = () => {
   getCoinMap()
   getCoinLatest()
   getCoinInfo()

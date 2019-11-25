@@ -1,6 +1,9 @@
 const Coin = require('../models/Coin')
 const axios = require('axios')
 const requireAdmin = require('../middlewares/requireAdmin')
+const keys = require('../config/keys')
+
+const coinUpdate = require('../services/coinUpdate')
 
 module.exports = app => {
   app.get('/api/coin/list/:page', (req, res) => {
@@ -33,27 +36,51 @@ module.exports = app => {
 
   })
 
-  app.get('/api/coin/info', (req, res) => {
-    Coin.findOne({ symbol: req.query.symbol }, (err, coin) => {
-      if (err) console.log(err)
-
-      res.json({ coin })
-    })
-  })
-
   app.get('/api/coin/detail/:id', async (req, res) => {
-    let data = {}
-    let BaseURL = 'https://www.cryptocompare.com/api/data/'
-    let detailURL = 'coinsnapshotfullbyid/?id='
-    let socialURL = 'socialstats/?id='
+    const coinSymbol = req.params.id
+    let coin = await Coin.findOne({ symbol: coinSymbol })
+    const coinId = coin.ccId
 
-    let detailRes = await axios.get(BaseURL + detailURL + req.params.id)
-    let socialRes = await axios.get(BaseURL + socialURL + req.params.id)
+    if (coin.hasMeta) {
+      res.json({ coin })
+    } else {
+      const CoinMarketCapURL = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/info'
+      const CryptoCompareURL = 'https://min-api.cryptocompare.com/data/social/coin/latest'
 
-    data.details = detailRes.data.Data
-    data.social = socialRes.data.Data
+      try {
+        let coinMarketCapRes = await axios.get(CoinMarketCapURL, {
+          headers: { 'X-CMC_PRO_API_KEY': keys.coinMarketCapApi },
+          params: { id: coinId }
+        })
 
-    res.json({ data })
+        let cryptoCompareRes = await axios.get(CryptoCompareURL, {
+          headers: { 'authorization': "Apikey " + keys.cryptoCompareApi },
+          params: { id: coinId }
+        })
+  
+        let coinMarketCapData = coinMarketCapRes.data.data
+        let cryptoCompareData = cryptoCompareRes.data.Data
+        let coinData = {
+          ccId: coinId,
+          url: coinMarketCapData[coinId].urls.website[0],
+          description: coinMarketCapData[coinId].description,
+          twitter: cryptoCompareData.Twitter,
+          reddit: cryptoCompareData.Reddit,
+          facebook: cryptoCompareData.Facebook,
+          repo: cryptoCompareData.CodeRepository,
+          technicalDoc: coinMarketCapData[coinId].urls.technical_doc,
+          chat: coinMarketCapData[coinId].urls.chat,
+          hasMeta: true
+        }
+  
+        let updates = await Coin.updateMetaCoin(coinData)
+
+        res.json({ coin: updates })
+      } catch (e) {
+        console.log(e)
+        res.json({ status: 400, message: "Failed call..."})
+      }
+    }
   })
 
   app.post('/api/coin/master-coin-update', requireAdmin, (req, res) => {
@@ -69,6 +96,18 @@ module.exports = app => {
         })
       }
       })
+  })
+
+  app.post('/api/coin/update-all', requireAdmin, (req, res) => {
+    try {
+      coinUpdate.updateData()
+      res.send({
+        status: 200,
+        message: "All coin updated"
+      })
+    } catch (err) {
+      res.status(422).send(err)
+    }
   })
 
   app.post('/api/coin/master-reset', requireAdmin, async (req, res) => {
