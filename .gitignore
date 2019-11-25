@@ -2,3 +2,4 @@
 node_modules
 dev.js
 seeder.js
+.env

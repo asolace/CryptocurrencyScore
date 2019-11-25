@@ -11,10 +11,13 @@ class CoinGraph extends Component {
   async componentDidUpdate(prevProps, prevState) {
     if (prevProps.coin !== this.props.coin) {
       try {
-        const DaysEndpoint = `https://min-api.cryptocompare.com/data/histoday?fsym=${this.props.coin.symbol}&tsym=USD&limit=80000&aggregate=1&e=CCCAGG&extraParams=Cryptocurrency_Score`
+        const DaysEndpoint = `https://min-api.cryptocompare.com/data/v2/histoday?fsym=${this.props.coin.symbol}&tsym=USD&limit=2000`
 
-        let daysResults = await axios.get(DaysEndpoint)
-        let mappedDays = daysResults.data.Data.map(data => [ data.time * 1000, data.close ])
+        let daysResults = await axios.get(DaysEndpoint, {
+          headers: { 'authorization': "Apikey " + process.env.REACT_APP_CRYPTOCOMPARE_API }
+        })
+
+        let mappedDays = daysResults.data.Data.Data.map(data => [ data.time * 1000, data.close ])
 
         this.setState({
           data: mappedDays,
