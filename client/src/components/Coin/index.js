@@ -13,15 +13,6 @@ class Coin extends Component {
     coin: {}
   }
 
-  // async componentDidMount() {
-  //   const symbol = this.props.match.params.id
-  //   let res = await axios.get('/api/coin/info?symbol=' + symbol)
-
-  //   this.setState({
-  //     coin: res.data.coin
-  //    })
-  // }
-
   async componentDidMount() {
     const symbol = this.props.match.params.id
 
