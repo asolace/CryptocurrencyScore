@@ -6,9 +6,11 @@ import { Card } from 'reactstrap'
 const SideContent = ({ coin }) =>
   <div className="side-content-container">
     <Card body outline>
-      <span className={`grade-box ${helper.renderRatingBox(coin.rating)}`}>
-        {coin.rating}
-      </span>
+      <div className="grade-wrapper">
+        <span className={`grade-box ${helper.renderRatingBox(coin.ratingLetter)}`}>
+          {coin.ratingLetter}
+        </span>
+      </div>
 
       <h5>Price</h5>
       <p>{helper.stringToUSD(coin.price_usd)} <span className="color-lg">usd</span></p>

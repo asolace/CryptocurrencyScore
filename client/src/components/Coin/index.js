@@ -28,7 +28,7 @@ class Coin extends Component {
 
   render() {
     const { coin } = this.state
-    
+    console.log(coin)
     return (
       <div className="coin-container">
         {coin &&
