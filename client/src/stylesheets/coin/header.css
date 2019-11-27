@@ -1,6 +1,6 @@
 .coin-header {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   text-align: left;
 }
 
@@ -9,7 +9,7 @@
 }
 
 .coin-flex-item {
-  margin-right: 50px;
+  margin-right: 20px;
 }
 
 .coin-logo {

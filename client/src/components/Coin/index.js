@@ -37,10 +37,10 @@ class Coin extends Component {
 
             <div className="coin-body">
               <Row>
-                <Col sm="3">
+                <Col md="3">
                   <SideContent coin={coin} />
                 </Col>
-                <Col sm="9">
+                <Col md="9">
                   <CoinGraph coin={coin}/>
                 </Col>
               </Row>

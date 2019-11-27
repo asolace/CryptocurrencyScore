@@ -11,9 +11,9 @@ const Header = ({ coin }) =>
       </div>
     </div>
 
-    <div className="coin-flex-item">
+    <div className="coin-flex-item" style={{ textAlign: "right" }}>
       <div className="coin-price">
-        ${coin.price_usd}
+        {helper.stringToUSD(coin.price_usd)}
         <span className="coin-sm-label color-lg"> usd</span>
       </div>
 

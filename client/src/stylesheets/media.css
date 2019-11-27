@@ -53,6 +53,11 @@
   .how-it-works-header h2 { font-size: 1.5rem; }
   .how-it-works-header h5 { font-size: 1rem; }
   .subnav-content { font-size: 10px; }
+  .coin-container { margin: 10px; }
+  .coin-price { font-size: 20px; }
+  .coin-price span { vertical-align: top; }
+  .coin-main h1 { font-size: 2rem; }
+  .coin-logo { width: 50px; }
 }
 
 @media (max-width: 500px) {
@@ -79,6 +84,7 @@
   }
 
   .list-1h { display: none; }
+  .coin-logo { width: 30px; }
 }
 
 @media (max-width: 400px) {
