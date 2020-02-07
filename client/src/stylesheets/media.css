@@ -18,7 +18,7 @@
   .subnav-content { font-size: 15px; }
   .subnav-content a { padding-right: 30px; }
   .footer-container .row { display: block; }
-  .right-footer { padding-left: 13px; float: left; }
+  .right-footer { padding-left: 0; float: left; }
   .user-nav-container {
     flex: none;
     max-width: none;
@@ -70,6 +70,16 @@
 
   .title-full { display: none; }
   .title-short { display: inline-block; }
+  .footer-brand-wrapper .title-full { display: none; }
+  .footer-brand-wrapper .title-short { display: inline-block; }
+
+  .footer-brand-wrapper {
+    width: 130px;
+  }
+
+  .right-footer .col {
+    padding-left: 0;
+  }
 
   .flex-item {
     margin-right: 10px;

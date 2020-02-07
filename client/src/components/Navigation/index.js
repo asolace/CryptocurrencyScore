@@ -7,7 +7,7 @@ import { Collapse, Navbar, NavbarBrand, NavbarToggler, Nav , NavItem } from 'rea
 import LoginDropdown from './LoginDropdown'
 import ProfileDropdown from './ProfileDropdown'
 
-import trade from '../../assets/trade.png'
+import brandImage from '../../assets/cryptocurrencies.svg'
 
 class Navigation extends Component {
   state = {
@@ -23,7 +23,7 @@ class Navigation extends Component {
       <Navbar className="main-nav" color="faded" light expand="md" id="nav">
         <NavbarBrand href={HomeURL}>
           <span className="brand">
-            <img src={trade} className="brand-img" alt="brand"/>
+            <img src={brandImage} className="brand-img" alt="brand"/>
           </span>
           <span className="title-full">Cryptocurrency Score</span>
           <span className="title-short">CCScore</span>

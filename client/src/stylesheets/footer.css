@@ -5,6 +5,45 @@
   margin-top: 60px;
 }
 
+.footer-brand-container {
+  padding: 78px;
+  font-size: 20px;
+}
+
+.footer-brand-wrapper {
+  width: 250px;
+  margin: 0 auto;
+}
+
+.footer-brand {
+  width: 25px;
+  float: left;
+}
+
+.footer-brand-wrapper .title-full {
+  margin-left: 10px;
+  font-size: 23px;
+  /* color: gray; */
+  font-weight: 200;
+}
+.footer-brand-wrapper .title-short {
+  margin-left: 10px;
+  color: gray;
+  font-weight: 200;
+  display: none;
+}
+
+.footer-links-wrapper {
+  padding-top: 25px;
+  margin-bottom: 50px;
+}
+
+.footer-label {
+  font-size: 15px;
+  color: gray;
+  margin-bottom: 5px;
+}
+
 .right-footer {
   float: right;
   padding: 0 15px;
@@ -14,4 +53,8 @@
   color: var(--link-color) !important;
   cursor: pointer;
   border: none;
+}
+
+.footer-attribution {
+  padding-bottom: 25px;
 }

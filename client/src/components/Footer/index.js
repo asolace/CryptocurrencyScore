@@ -9,6 +9,7 @@ import { Eth, Btc } from 'react-cryptocoins'
 import BTCdonate from '../../assets/BTCdonate.png'
 import ETHdonate from '../../assets/ETHdonate.png'
 import copyIcon from '../../assets/copyIcon.png'
+import brandImage from '../../assets/cryptocurrencies.svg'
 
 class Footer extends Component {
   state = {
@@ -40,25 +41,62 @@ class Footer extends Component {
     return (
       <div className="footer-container" id="bot">
         <hr />
-        <Container>
-          <Row>
-            <Col>
-              <p>
-                &copy; 2018 Cryptocurrency Score |
-                <a href="https://www.asolace.com" target="_blank" rel="noopener noreferrer"> Asolace </a> |
-                <Link to="/disclaimer"> Disclaimer</Link> |
-                <Link to="/faq"> FAQ</Link> |
-                <Link to="/contact"> Contact</Link> |
-              </p>
-            </Col>
-            <Col>
-              <div className="right-footer">
-                <Row>Donate BTC: &nbsp;<button className="donate" onClick={this.btcToggle}> 1Hpt4hnSYsePr8iyiqckLmTgJGcu2ejgmh </button></Row>
-                <Row>Donate ETH: &nbsp;<button className="donate" onClick={this.ethToggle}> 0x5C5c8318cD6975D22a8b67d8aA1552eB3e8d8d04 </button></Row>
-              </div>
-            </Col>
-          </Row>
-        </Container>
+        <div className="footer-brand-container">
+          <div className="footer-brand-wrapper">
+            <span className="footer-brand">
+              <img src={brandImage} className="brand-img" alt="brand"/>
+            </span>
+            <span className="title-full">Cryptocurrency Score</span>
+            <span className="title-short">CCScore</span>
+          </div>
+        </div>
+        <hr />
+        <div className="footer-links-wrapper">
+          <Container>
+            <Row>
+              <Col>
+                <div className="footer-attribution">
+                  <p className="footer-label">Attributions</p>
+                  Icons made by <a href="https://www.flaticon.com/authors/prettycons" title="prettycons">prettycons</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+                </div>
+              </Col>
+            </Row>
+          </Container>
+
+          <hr />
+         
+          <Container>
+            <Row>
+              <Col>
+                <p>
+                  <a href="https://www.asolace.com" target="_blank" rel="noopener noreferrer"> Asolace </a> |
+                  <Link to="/disclaimer"> Disclaimer</Link> |
+                  <Link to="/faq"> FAQ</Link> |
+                  <Link to="/contact"> Contact</Link>
+                </p>
+              </Col>
+              <Col>
+                <div className="right-footer">
+                  <Row>
+                    <Col>
+                      <p className="footer-label">Donate</p>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col>
+                      BTC:&nbsp;<button className="donate" onClick={this.btcToggle}> 1Hpt4hnSYsePr8iyiqckLmTgJGcu2ejgmh </button>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col>
+                      ETH:&nbsp;<button className="donate" onClick={this.ethToggle}> 0x5C5c8318cD6975D22a8b67d8aA1552eB3e8d8d04 </button>
+                    </Col>
+                  </Row>
+                </div>
+              </Col>
+            </Row>
+          </Container>
+        </div>
 
 
         <Modal isOpen={this.state.btcModal} toggle={this.btcToggle}>
