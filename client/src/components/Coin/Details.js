@@ -176,8 +176,10 @@ class Details extends Component {
                     </tbody>
                   </Table>
 
-                  <h5>Description</h5>
-                  <p>{this.paragraphParse(description)}</p>
+                  <div className="coin-detail-description-wrapper">
+                    <h5>Description</h5>
+                    <p>{this.paragraphParse(description)}</p>
+                  </div>
                 </Col>
               </Row>
             </TabPane>

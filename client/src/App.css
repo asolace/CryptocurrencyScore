@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Hind|Cantarell|Montserrat|Raleway:100');
+@import url('https://fonts.googleapis.com/css?family=Hind|Cantarell|Montserrat:400,700,900|Raleway:400');
 @import 'stylesheets/coin/index.css';
 @import 'stylesheets/user/index.css';
 @import 'stylesheets/announcements.css';
@@ -30,12 +30,12 @@
 }
 
 :root {
-  --link-color: #428bca;
-  --light-gray: #abb1bf;
+  --link-color: #1070e0;
+  --light-gray: #757575;
 }
 
 a {
-  color: gray;
+  color: #1070e0;
 }
 
 a, a:active, a:hover {
