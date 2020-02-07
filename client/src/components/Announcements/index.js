@@ -19,15 +19,8 @@ class Announcements extends Component {
         <Alert color="danger">
           <span className="announcement-header">Important!</span>
           <ul className="announcements-container">
-            <li>While under development coin ratings are currently bias and holds no weight.</li>
-            <li>While under development coin data may not be updated.</li>
-          </ul>
-        </Alert>
-
-        <Alert color="warning" isOpen={this.state.warning} toggle={this.warningDismiss}>
-          <span className="announcement-header">Coins to strongly avoid!</span>
-          <ul className="announcements-container">
-            <li>Bitconnect (BCC)</li>
+            <li>Coin ratings are currently bias and holds no weight.</li>
+            <li>Coin data may not be updated.</li>
           </ul>
         </Alert>
       </div>

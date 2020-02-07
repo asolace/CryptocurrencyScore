@@ -22,11 +22,11 @@
   margin-top: 20px;
   margin-bottom: 20px;
   padding: 10px;
-  font-family: Montserrat,sans-serif;
-  color: #393939;
-  box-shadow: 0 2px 6px 0 hsla(0, 0%, 0%, 0.2);
+  font-family: Raleway,sans-serif;
+  /* box-shadow: 0 2px 6px 0 hsla(0, 0%, 0%, 0.2); */
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 .legend-header {
   text-align: center;
-  text-decoration: underline;
 }
