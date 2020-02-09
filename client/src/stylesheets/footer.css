@@ -47,12 +47,14 @@
 .right-footer {
   float: right;
   padding: 0 15px;
+  word-break: break-all;
 }
 
 .right-footer .donate {
   color: var(--link-color) !important;
   cursor: pointer;
   border: none;
+  text-align: left;
 }
 
 .footer-attribution {
