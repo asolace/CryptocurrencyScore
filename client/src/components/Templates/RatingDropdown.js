@@ -55,7 +55,7 @@ class RatingDropdown extends React.Component {
     let rating = this.state.rating || this.props.rating
     return (
       <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-        <DropdownToggle className={`gb-sm ${helpers.renderRatingBox(rating)}`} caret>
+        <DropdownToggle className={`btn-grade-dropdown gb-sm ${helpers.renderRatingBox(rating)}`} caret>
           {rating}
         </DropdownToggle>
         <DropdownMenu className="change-list-container">

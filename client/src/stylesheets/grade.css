@@ -1,6 +1,6 @@
 .grade-box {
-  background: #cccccc;
-  color: white;
+  background-color: #cccccc;
+  color: #564a23;
   padding: 6px 11px;
   margin: 5px;
   text-transform: uppercase;
@@ -14,12 +14,31 @@
 }
 
 .grade-text { font-size: 17px;}
-.gb-a { background: #00a300; }
-.gb-b { background: #2d89ef; }
-.gb-c { background: #ffc40d; color: #564a23; }
-.gb-d { background: #ff8c00; color: #463d20; }
-.gb-f { background: #ee1111; }
-.gb-n { background: gray; }
+.gb-a { 
+  border: 1px solid #00a300;
+  background-color: #e7ffe7;
+}
+.gb-b { 
+  border: 1px solid #2d89ef;
+  background-color: #c7e2ff;
+}
+.gb-c { 
+  border: 1px solid #ffc40d;
+  background-color: #fff2c9; 
+}
+.gb-d { 
+  border: 1px solid #ff8c00;
+  background-color: #ffdfb8;
+}
+.gb-f { 
+  border: 1px solid #ee1111; 
+  background-color: #ffd7d7; 
+}
+.gb-n { 
+  border: 1px solid gray; 
+  background-color: #e4e4e4; 
+}
+.btn-grade-dropdown { color: #564a23; }
 .gb-sm { padding: 5px 10px; }
 
 .grade-wrapper {
@@ -47,7 +66,6 @@
 }
 .change-list .grade-box:hover {
   transform: scale(1.52);
-  border: 1px solid white;
 }
 .rating-list-table button {
   border-radius: 50%;
