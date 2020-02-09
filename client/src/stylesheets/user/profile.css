@@ -11,7 +11,7 @@
 .users-data {
   font-size: 15px;
   /* margin-left: 10px; */
-  color: #6912C6;
+  color: #4153a9;
   /* border: 1px solid #ced4da; */
   /* border-radius: 1rem; */
   padding: 0.375rem 0.75rem;
@@ -29,9 +29,18 @@
   padding: 15px;
   font-family: Montserrat,sans-serif;
   text-align: center;
-  background-color: #7AA941;
+  background-color: #41a4a9;
   color: white;
 }
 .user-table-heading h4 {
   margin: 0;
+}
+
+.username-update-btn {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.user-profile-container #username {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
 }
